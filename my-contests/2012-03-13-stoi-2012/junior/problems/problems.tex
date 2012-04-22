@@ -1,0 +1,221 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cmap}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{xeCJK}
+
+\geometry{margin=1in}
+
+\setCJKmainfont[BoldFont={SimHei}]
+{SimSun}
+\setCJKmonofont{FangSong}
+
+\title{2012年汕头市青少年信息学奥林匹克决赛\\
+普及组}
+%\author{ftiasch}
+\date{2012年4月15日}
+
+\renewcommand{\thesection}{第\arabic{section}题}
+\renewcommand{\thesubsection}{}
+
+\newcommand{\problem}{\section}
+\newcommand{\inputformat}{\subsection{输入格式}}
+\newcommand{\outputformat}{\subsection{输出格式}}
+\newcommand{\sample}[2]{
+\subsection{输入输出样例}
+\begin{tabular}{|l|l|}
+    \hline
+    输入 & 输出 \\
+    \hline
+    \begin{minipage}[t]{200pt}
+        \begin{ttfamily} #1 \end{ttfamily}
+    \end{minipage} &
+    \begin{minipage}[t]{200pt}
+        \begin{ttfamily} #2 \end{ttfamily}
+    \end{minipage} \\
+    \hline
+\end{tabular}
+\vspace{1ex}
+\par
+}
+\newcommand{\dataset}{\subsection{数据范围}}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item 参赛选手提交\textbf{源文件}，文件名为对应题目英文加上语言后缀。例如，test一题的提交应该名为test.pas, test.c或者test.cpp。\textbf{不要}在提交目录下建立子目录。
+
+\item 程序需要使用\textbf{文件}输入输出，输入输出文件名为对应题目英文加上文件类型。例如，test一题的输入输出文件分别为test.in和test.out。
+
+\item 时间限制原则上至少是标准程序运行时间的$2$倍，空间限制为$256$M。
+
+\item 最终解释权归出题人所有。
+\end{enumerate}
+
+\problem{排序(sort)}
+
+ftiasch和nm是好朋友。nm的成绩很差，以至于GPA（平均绩点）在系内倒数。系内一共有$N$位同学，每位同学有自己的GPA，以及已修学分数，定义$\textrm{GPT} = \textrm{GPA} \times \textrm{已修学分数}$。ftiasch为了帮助nm提高成绩，给nm提了一个要求：新学期的GPA要超过系内排名第$K$位的同学。
+
+为了帮助理解，给出一个例子：
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+排名 & GPA & 已修学分数 & GPT \\
+\hline
+1 & 3.8 & 21 & 79.8 \\
+\hline
+2 & 3.7 & 23 & 85.1 \\
+\hline
+3 & 3.65 & 20 & 73 \\
+\hline
+4(跟3一样) & 3.65 & 18 & 65.7 \\
+\hline
+5 & 3.3 & 22 & 72.6 \\
+\hline
+\end{tabular}
+\end{center}
+
+现在给出系里面每位同学的GPT（只有一位小数），以及他们的已修学分。你需要帮助nm把排名第$K$位的同学的GPA求出来。
+
+\inputformat{}
+
+第$1$行，$2$个整数$N$, $K$。第$2 \sim (N + 1)$行，每行$1$个非负实数和$1$个整数，分别表示GPT和已修学分数，注意所有同学的学分都在$[1, 250]$的范围。
+
+\outputformat{}
+
+第$1$行，$1$个实数，表示排名第$K$同学的GPA，保留$2$位小数输出。
+
+\sample{
+5 3 \\
+73 20 \\
+79.8 21 \\
+72.6 22 \\
+85.1 23 \\
+65.7 18 \\
+}{
+3.65 \\
+}
+
+\dataset{}
+
+\begin{itemize}
+    \item 对于$50\%$的数据，$1 \leq N \leq 100$。
+
+    \item 对于$100\%$的数据，$1 \leq K \leq N \leq 100,000$，GPT小数点后至多$1$位，GPA至多$4.0$。
+\end{itemize}
+
+\problem{求和(sum)}
+
+ftiasch有很多糖果，分成了$N$堆，排成一列。ftiasch说，如果nm能迅速求出第$L$堆到第$R$堆一共有多少糖果，就把这些糖果都给他。
+
+现在给出每堆糖果的数量，以及每次询问的$L$和$R$，你需要帮助nm，把每次询问的结果求出来。注意，你不需要考虑糖果被nm取走的情况。
+
+\inputformat{}
+
+第$1$行，$2$个整数$N$, $M$, 分别表示堆数和询问数量。第$2$行，$N$个整数$A_i$，表示第$i$堆糖果的数量。第$3 \sim (M + 2)$行，每行$2$个整数$L_i$, $R_i$，表示第$i$个询问是$[L_i, R_i]$。
+
+\outputformat{}
+
+$M$行，对于每个询问，输出对应的和。
+
+\sample{
+5 5 \\
+1 2 3 4 5 \\
+1 5 \\
+2 4 \\
+3 3 \\
+1 3 \\
+3 5 \\
+}{
+15 \\
+9 \\
+3 \\
+6 \\
+12 \\
+}
+
+\dataset{}
+
+\begin{itemize}
+    \item 对于$50\%$的数据，$1 \leq N, M \leq 100$。
+
+    \item 对于$100\%$的数据，$1 \leq N, M \leq 100,000$，$0 \leq A_i \leq 10,000$，$1 \leq L_i \leq R_i \leq N$。
+\end{itemize}
+
+\problem{数数(count)}
+
+ftiasch开发了一个奇怪的游戏，这个游戏的是这样的：一个长方形，被分成$N$行$M$列的格子，第$i$行第$j$列的格子记为$(i, j)$，就是说，左上角的格子是$(1, 1)$，右下角的格子是$(N, M)$。开始的时候，nm在$(1, 1)$，他需要走到$(N, M)$。每一步，nm可以走到正右方或者正下方的一个格子。具体地说，如果nm现在在$(x, y)$，那么他可以走到$(x, y + 1)$或$(x + 1, y)$。当然，nm不能走出离开这个长方形。
+
+每个格子有积分，用一个$1 \sim 10$的整数表示。经过这个格子，就会获取这个格子的积分（起点和终点的积分也计算）。通过的方法是：到达$(N, M)$的时候，积分恰好为$P$。
+
+现在给出这个长方形每个格子的积分，你需要帮助nm，求出从起点走到终点，积分为$P$的线路有多少条。
+
+\inputformat{}
+
+第$1$行，$3$个整数$N$, $M$, $P$。接下来$N$行，每行$M$个整数$A_{ij}$，表示格子$(i, j)$的积分。
+
+\outputformat{}
+
+第$1$行，$1$个整数，表示积分为$P$线路的数量。因为数值太大，你只需要输出结果除以$(10^9 + 7)$的余数。
+
+\sample{
+3 3 9 \\
+2 2 1 \\
+2 2 2 \\
+1 2 2 \\
+}{
+2 \\
+}
+
+\dataset{}
+
+\begin{itemize}
+    \item 对于$50\%$的数据，$1 \leq N, M \leq 10$。
+
+    \item 对于$100\%$的数据，$1 \leq N, M \leq 100$，$0 \leq A_{ij} \leq 10$。
+\end{itemize}
+
+\problem{步行(walk)}
+
+ftiasch又开发了一个奇怪的游戏，这个游戏是这样的：有$N$个格子排成一列，每个格子上有一个数字，第$i$个格子的数字记为$A_i$。这个游戏有2种操作：
+
+\begin{enumerate}
+    \item 如果现在在第$i$个格子，则可以跳到第$A_i$个格子。
+
+    \item 把某个$A_i$增加或减少$1$。
+\end{enumerate}
+
+nm开始在第$1$个格子，他需要走到第$N$个格子才能通关。现在他已经头昏脑涨啦，需要你帮助他求出，从起点到终点最少需要多少次操作。
+
+\inputformat{}
+
+第$1$行，$1$个整数$N$。第$2$行，$N$个整数$A_i$。
+
+\outputformat{}
+
+第$1$行，$1$个整数，表示最少的操作次数。
+
+\sample{
+5 \\
+3 4 2 5 3 \\
+}{
+3 \\
+}
+
+\dataset{}
+
+\begin{itemize}
+    \item 对于$30\%$的数据，$1 \leq N \leq 10$。
+
+    \item 对于$60\%$的数据，$1 \leq N \leq 1,000$。
+
+    \item 对于$100\%$的数据，$1 \leq N \leq 100,000$，$1 \leq A_i \leq N$。
+\end{itemize}
+\end{document}

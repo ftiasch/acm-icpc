@@ -1,0 +1,12 @@
+.DS_Store
+*.dsYM
+*.swp
+
+*.aux
+*.log
+*.pdf
+
+*.in
+*.out
+
+# /my-contests/

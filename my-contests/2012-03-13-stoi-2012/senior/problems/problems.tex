@@ -1,0 +1,188 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cmap}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{xeCJK}
+
+\geometry{margin=1in}
+
+\setCJKmainfont[BoldFont={SimHei}]
+{SimSun}
+\setCJKmonofont{FangSong}
+
+\title{2012年汕头市青少年信息学奥林匹克决赛\\
+提高组}
+%\author{ftiasch}
+\date{2012年4月15日}
+
+\renewcommand{\thesection}{第\arabic{section}题}
+\renewcommand{\thesubsection}{}
+
+\newcommand{\problem}{\section}
+\newcommand{\inputformat}{\subsection{输入格式}}
+\newcommand{\outputformat}{\subsection{输出格式}}
+\newcommand{\sample}[2]{
+\subsection{输入输出样例}
+\begin{tabular}{|l|l|}
+    \hline
+    输入 & 输出 \\
+    \hline
+    \begin{minipage}[t]{200pt}
+        \begin{ttfamily} #1 \end{ttfamily}
+    \end{minipage} &
+    \begin{minipage}[t]{200pt}
+        \begin{ttfamily} #2 \end{ttfamily}
+    \end{minipage} \\
+    \hline
+\end{tabular}
+\vspace{1ex}
+\par
+}
+\newcommand{\dataset}{\subsection{数据范围}}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item 参赛选手提交\textbf{源文件}，文件名为对应题目英文加上语言后缀。例如，test一题的提交应该名为test.pas, test.c或者test.cpp。\textbf{不要}在提交目录下建立子目录。
+
+\item 程序需要使用\textbf{文件}输入输出，输入输出文件名为对应题目英文加上文件类型。例如，test一题的输入输出文件分别为test.in和test.out。
+
+\item 时间限制原则上至少是标准程序运行时间的$2$倍，空间限制为$256$M。
+
+\item 最终解释权归出题人所有。
+\end{enumerate}
+
+\problem{数学(math)}
+
+ftiasch和nm是好朋友。nm的智商比较低，于是ftiasch经常会出一些数学题来提高nm的智商。这次，他又出了一道题目：
+
+给出数列$A_1, A_2, \ldots, A_N$，并设\[B_i = \frac{A_1 \cdot A_2 \cdots A_N}{A_i} \bmod (10^9 + 7)\]
+
+请你帮助nm，把所有的$B_i$算出来。
+
+\inputformat{}
+
+第$1$行，$1$个整数$N$, 表示数列的长度。第$2$行，$N$个整数$A_1, A_2, \ldots, A_N$，表示给出的数列。
+
+\outputformat{}
+
+第$1$行，$N$个整数，表示算出的$B_1, B_2, \ldots, B_N$。
+
+\sample{
+3 \\
+1 2 3 \\
+}{
+6 3 2 \\
+}
+
+\dataset{}
+
+\begin{itemize}
+    \item 对于$50\%$的数据，$1 \leq N \leq 1,000$。
+
+    \item 对于$100\%$的数据，$1 \leq N \leq 100,000$，$1 \leq A_i \leq 10^9$。
+\end{itemize}
+
+\problem{黑屋(trap)}
+
+由于nm没有把题目做出来，ftiasch把nm关进了小黑屋。小黑屋是矩形的，被纵向划分成了$N$行、横向划分成了$M$列房间。如果从高处往下看，这小黑屋就是被划分成了$N$行$M$列。记第$i$行第$j$列的房间为$(i, j)$，则左上角的房间为$(1, 1)$，右下角的房间为$(n, m)$。nm可以向上下左右移动，就是说，如果nm在$(x, y)$，他可以移动到$(x - 1, y)$, $(x + 1, y)$, $(x, y - 1)$, $(x, y + 1)$其中任意的位置。注意，由于是小黑屋，nm不能移动出小黑屋的边界。
+
+现在，nm有这样一个问题：他现在位于$(x_0, y_0)$，他想知道，如果移动$K$次，一共有多少合法的方案。
+
+\inputformat{}
+
+第$1$行，$5$个整数$N$, $M$, $K$, $x_0$, $y_0$。
+
+\outputformat{}
+
+第$1$行，$1$个整数，代表合法方案的数量。因为数值太大，你只需要输出结果除以$(10^9 + 7)$的余数。
+
+\sample{
+1 2 1 1 2 \\
+}{
+1 \\
+}
+
+\dataset{}
+
+\begin{itemize}
+    \item 对于$50\%$的数据，$1 \leq N, M, K \leq 100$。
+
+    \item 对于$100\%$的数据，$1 \leq N, M, K \leq 1,000$，$1 \leq x_0 \leq N$，$1 \leq y_0 \leq M$。
+\end{itemize}
+
+\problem{取球(ball)}
+
+被关一轮小黑屋后，nm终于被ftiasch放出来了。他们玩起了这样一个游戏：
+
+$N$个球排成一列，每个球可能是红(a)、绿(b)、蓝(c)三种颜色之一。如果相邻两个球的颜色不一样，则可以拿走这两个球，在这个位置换上一个第三种颜色的球。例如，现在有这样一列球：bbcc，经过一次操作后，则可以变成bac。显然，操作不可能无限进行，而且对于不同的操作方式，剩下球的数量也不相同。
+
+现在，你作为裁判，需要知道在最优策略下，最少能剩下多少个球。
+
+\inputformat{}
+
+第$1$行，$1$个字符串，表示初始时球的颜色。
+
+\outputformat{}
+
+第$1$行，$1$个整数，表示最少剩下的球数。
+
+\sample{
+abc \\
+}{
+2 \\
+}
+
+\dataset
+
+\begin{itemize}
+    \item 对于$50\%$的数据，$1 \leq N \leq 100$。
+
+    \item 对于$100\%$的数据，$1 \leq N \leq 5,000$，输入的字符串只包含a, b, c三种字符。
+\end{itemize}
+
+\problem{异或(xor)}
+
+这天nm又遇到一道奇怪的题目，这道题目是这样的：
+
+给定一个数列$A_1, A_2, \ldots, A_N$，会有很多次询问，每次询问一个区间$[L_i, R_i]$，并给出一个$B_i$，求$A_k \oplus B_i(L_i \leq k \leq R_i)$的最大值是多少，其中$A \oplus B$表示$A$和$B$的异或值。
+
+nm表示不会做，于是去问ftiasch。ftiasch表示，这么水的题目一点意思都没有，然后就扔给你做了。
+
+\inputformat{}
+
+第$1$行，$2$个整数$N$, $M$, 表示数列的长度和询问的数量。
+
+第$2$行，$N$个整数$A_1, A_2, \ldots, A_N$, 表示给出的数列。
+
+第$3 \sim (2 + M)$行，每行$3$个整数$L_i, R_i, B_i$。
+
+\outputformat{}
+
+$M$行，每行$1$个整数，代表每个询问的最大值。
+
+\sample{
+3 2 \\
+1 3 2 \\
+1 2 1 \\
+1 3 1 \\
+}{
+2 \\
+3 \\
+}
+
+\dataset
+
+\begin{itemize}
+    \item 对于$50\%$的数据，$1 \leq N, M \leq 1,000$。
+
+    \item 对于$100\%$的数据，$1 \leq N, M \leq 50,000$，$0 \leq A_i, B_i \leq 10,000$，$1 \leq L_i \leq R_i \leq N$。
+\end{itemize}
+
+\end{document}

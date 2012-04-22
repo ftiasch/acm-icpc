@@ -6,6 +6,7 @@
 *.log
 *.pdf
 
+*.class
 *.in
 *.out
 

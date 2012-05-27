@@ -3,9 +3,10 @@
 #include <cstdio>
 #include <cstring>
 #include <list>
+#include <vector>
 using namespace std;
 
-const int N = 6;
+const int N = 7;
 const int M = 100 << 1;
 
 int n, edge_count, first_edge[N], to[M], next_edge[M], parent[N], 
@@ -44,12 +45,19 @@ void dfs(int u) {
     }
 }
 
+void my_assert(bool b) {
+    if (!b) {
+        vector <int> v;
+        printf("%d\n", (int)v[0]);
+    }
+}
+
 int main() {
     scanf("%d", &n);
-runtime_error();
+//my_assert(n >= 1);
     edge_count = 0;
     memset(first_edge, -1, sizeof(first_edge));
-    for (int i = 0; i < 6; ++ i) {
+    for (int i = 0; i < N; ++ i) {
         parent[i] = i;
     }
     memset(exists, 0, sizeof(exists));
@@ -57,8 +65,6 @@ runtime_error();
     for (int i = 0; i < n; ++ i) {
         int a, b;
         scanf("%d%d", &a, &b);
-        a --;
-        b --;
         add_edge(a, b);
         add_edge(b, a);
         merge(a, b);
@@ -66,37 +72,41 @@ runtime_error();
         degree[a] ++;
         degree[b] ++;
     }
-    int pivot = 0;
-    while (!exists[pivot]) {
-        pivot ++;
-    }
-    bool no_solution = false;
-    for (int i = 0; i < 6; ++ i) {
-        if (exists[i] && find(i) != find(pivot)) {
-            no_solution = true;
+    if (n > 0) {
+        int pivot = 0;
+        while (pivot < N && !exists[pivot]) {
+            pivot ++;
         }
-    }
-    int odd_degree_count = 0;
-    for (int i = 0; i < 6; ++ i) {
-        odd_degree_count += degree[i] & 1;
-    }
-    if (odd_degree_count != 0 && odd_degree_count != 2) {
-        no_solution = true;
-    }
-    if (no_solution) {
-        puts("No solution");
-    } else {
-        if (odd_degree_count == 2) {
-            while (!exists[pivot] || (degree[pivot] & 1) == 0) {
-                pivot ++;
+my_assert(pivot < N);
+        bool no_solution = false;
+        for (int i = 0; i < N; ++ i) {
+            if (exists[i] && find(i) != find(pivot)) {
+                no_solution = true;
             }
         }
-        memset(ways, -1, sizeof(ways));
-        dfs(pivot);
-        for (list <int> :: iterator iter = order.begin(); \
-                iter != order.end(); ++ iter) {
-            int i = *iter;
-            printf("%d %c\n", i + 1, ways[i] == 0? '+': '-');
+        int odd_degree_count = 0;
+        for (int i = 0; i < N; ++ i) {
+            odd_degree_count += degree[i] & 1;
+        }
+        if (odd_degree_count != 0 && odd_degree_count != 2) {
+            no_solution = true;
+        }
+        if (no_solution) {
+            puts("No solution");
+        } else {
+            if (odd_degree_count == 2) {
+                while (pivot < N && !exists[pivot] || (degree[pivot] & 1) == 0) {
+                    pivot ++;
+                }
+            }
+my_assert(pivot < N);
+            memset(ways, -1, sizeof(ways));
+            dfs(pivot);
+            for (list <int> :: iterator iter = order.begin(); \
+                    iter != order.end(); ++ iter) {
+                int i = *iter;
+                printf("%d %c\n", i + 1, ways[i] == 0? '+': '-');
+            }
         }
     }
     return 0;

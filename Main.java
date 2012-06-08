@@ -6,13 +6,16 @@ import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 class Solver {
-    void run(InputReader in, PrintWriter out) {
+    void run(InputReader in, PrintWriter out) throws IOException {
     }
 }
 
 public class Main {
-    public static void main(String args[]) throws IOException {
-        new Solver().run(new InputReader(System.in), new PrintWriter(System.out));
+    public static void main(String args[]) {
+        try {
+            new Solver().run(new InputReader(System.in), new PrintWriter(System.out));
+        } catch (IOException e) {
+        }
     }
 }
 

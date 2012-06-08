@@ -1,21 +1,28 @@
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
 
-public class Main implements Runnable {
+class Solver {
+    void run(InputReader in, PrintWriter out) {
+    }
+}
+
+public class Main {
+    public static void main(String args[]) throws IOException {
+        new Solver().run(new InputReader(System.in), new PrintWriter(System.out));
+    }
+}
+
+class InputReader {
     BufferedReader reader;
     StringTokenizer tokenizer;
-    PrintStream writer;
 
-    Main() {
-        reader = new BufferedReader(new InputStreamReader(System.in));
+    InputReader(InputStream in) {
+        reader = new BufferedReader(new InputStreamReader(in));
         tokenizer = new StringTokenizer("");
-        writer = new PrintStream(new BufferedOutputStream(System.out));
-    }
-
-    public void run() {
-        try {
-        } catch (Exception e) {
-        }
     }
 
     String nextToken() throws IOException {
@@ -27,9 +34,5 @@ public class Main implements Runnable {
 
     int nextInt() throws IOException {
         return Integer.parseInt(nextToken());
-    }
-
-    public static void main(String args[]) {
-        new Thread(new Main()).run();
     }
 }

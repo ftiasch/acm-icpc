@@ -1,34 +1,37 @@
-// SGU 180 -- X-Sequence
+// SGU 180 -- Inversions
 #include <cstdio>
 #include <cstring>
 #include <vector>
+#include <iostream>
+#include <algorithm>
 using namespace std;
 
+const int N = 111111;
+
+int n, a[N], b[N];
+
 int main() {
-    int init, alpha, beta, gamma, mod, length;
-    scanf("%d%d%d%d%d%d", &init, &alpha, &beta, &gamma, &mod, &length);
-    if (length == 0) {
-        printf("%d\n", init);
-        return 0;
+    scanf("%d", &n);
+    vector <int> v;
+    for (int i = 0; i < n; ++ i) {
+        scanf("%d", a + i);
+        v.push_back(a[i]);
     }
-    init %= mod;
-    int hash[mod];
-    memset(hash, -1, sizeof(hash));
-    vector <int> sequence;
-    sequence.push_back(init);
-    hash[init] = 0;
-    for (int i = 1; i <= length; ++ i) {
-        int next = (alpha * init % mod * init % mod + beta * init % mod + gamma) % mod;
-        if (hash[next] == -1) {
-            hash[next] = i;
-        } else {
-            int cycle = i - hash[next];
-            printf("%d\n", sequence[hash[next] + (length - hash[next]) % cycle]);
-            return 0;
+    sort(v.begin(), v.end());
+    v.erase(unique(v.begin(), v.end()), v.end());
+    for (int i = 0; i < n; ++ i) {
+        a[i] = lower_bound(v.begin(), v.end(), a[i]) - v.begin() + 1;
+    }
+    long long result = 0;
+    memset(b, 0, sizeof(b));
+    for (int i = n - 1; i >= 0; -- i) {
+        for (int j = a[i] - 1; j >= 1; j -= j & -j) {
+            result += b[j];
         }
-        sequence.push_back(next);
-        init = next;
+        for (int j = a[i]; j <= n; j += j & -j) {
+            b[j] ++;
+        }
     }
-    printf("%d\n", init);
+    cout << result << endl;
     return 0;
 }

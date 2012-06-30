@@ -1,70 +1,80 @@
 // Problem A -- Beautiful Meadow
-#include <cassert>
 #include <cstdio>
 #include <cstring>
-#include <string>
+#include <map>
 #include <algorithm>
 using namespace std;
 
-const int N = 10;
-const int M = 500000;
-const int MOD = 99991;
-const string CHAR = "*1()";
+struct Mask {
+    int mask;
 
-int n, m, weight[N][N], pointer, stateCount[2], values[2][M], nextState[M], hash[MOD], states[2][M];
+    Mask(int mask = 0): mask(mask) {}
 
-inline int get(int state, int k) {
-    return state >> (k << 1) & 3;
-}
-
-inline int set(int state, int k, int v) {
-    return state ^ ((get(state, k) ^ v) << (k << 1));
-}
-
-void print(int state) {
-    for (int i = 0; i <= m; ++ i) {
-        printf("%c", CHAR[state >> (i << 1) & 3]);
+    int operator[](int k) const {
+        return mask >> (k << 1) & 3;
     }
-    puts("");
-}
 
-void update(int state, int value) {
-    int h = state % MOD;
-    for (int iter = hash[h]; iter != -1; iter = nextState[iter]) {
-        if (states[pointer][iter] == state) {
-            values[pointer][iter] = max(values[pointer][iter], value);
-            return;
-        }
+    Mask set(int k, int v) const {
+        return mask & ~(3 << (k << 1)) | (v << (k << 1));
     }
-    int iter = stateCount[pointer] ++;
-    states[pointer][iter] = state;
-    values[pointer][iter] = value;
-    nextState[iter] = hash[h];
-    hash[h] = iter;
-}
 
-int findMatch(int state, int start, int init) {
-    int delta = (init & 1) == 0? 1: -1;
-    int count = delta;
-    for (int i = start + delta; ; i += delta) {
-        if ((get(state, i) >> 1) == 1) {
-            if ((get(state, i) & 1) == 0) {
+    Mask shift() const {
+        return mask << 2;
+    }
+
+    int match(int k) const {
+        int delta = (*this)[k] == 2? 1: -1;
+        int count = 0;
+        for (int i = k; ; i += delta) {
+            if ((*this)[i] == 2) {
                 count ++;
-            } else {
+            }
+            if ((*this)[i] == 3) {
                 count --;
             }
+            if (count == 0) {
+                return i;
+            }
         }
-        if (count == 0) {
-            return i;
-        }
+        return -1;
     }
-    return -1;
+
+    bool empty() const {
+        return mask == 0;
+    }
+
+    void show(int m) {
+        for (int i = 0; i <= m; ++ i) {
+            printf("%c", "01()"[(*this)[i]]);
+        }
+        puts("");
+    }
+};
+
+bool operator <(const Mask &a, const Mask &b) {
+    return a.mask < b.mask;
+}
+
+const int N = 10;
+
+typedef map <Mask, int> Map;
+
+int n, m, weight[N][N];
+
+void update(Map *states, Mask state, int value) {
+    if (states->find(state) == states->end()) {
+        states->insert(make_pair(state, value));
+    }
+    (*states)[state] = max((*states)[state], value);
 }
 
 int main() {
     int testCount;
     scanf("%d", &testCount);
-    while (testCount --) {
+    Map *states = new Map();
+    Map *newStates = new Map();
+    while (testCount > 0) {
+        testCount --;
         scanf("%d%d", &n, &m);
         memset(weight, 0, sizeof(weight));
         for (int i = 0; i < n; ++ i) {
@@ -72,72 +82,76 @@ int main() {
                 scanf("%d", &weight[i][j]);
             }
         }
-        pointer = 0;
-        stateCount[pointer] = 0;
-        memset(hash, -1, sizeof(hash));
-        update(0, 0);
         int result = 0;
+        newStates->clear();
+        newStates->insert(make_pair(Mask(0), 0));
         for (int i = 0; i < n; ++ i) {
             for (int j = 0; j < m; ++ j) {
                 result = max(result, weight[i][j]);
-                pointer ^= 1;
-                stateCount[pointer] = 0;
-                memset(hash, -1, sizeof(hash));
-                for (int k = 0; k < stateCount[pointer ^ 1]; ++ k) {
-                    int state = states[pointer ^ 1][k];
-                    int value = values[pointer ^ 1][k];
-                    if (j == 0) {
-                        state = state << 2;
-                    }
+                //printf("%d, %d\n", i, j);
+                swap(states, newStates);
+                newStates->clear();
+                for (Map :: iterator iter = states->begin(); iter != states->end(); ++ iter) {
+                    Mask state = j == 0? (iter->first).shift(): iter->first;
+                    //state.show(m);
+                    int value = iter->second + weight[i][j];
                     if (weight[i][j] == 0) {
-                        if (get(state, j) == 0 && get(state, j + 1) == 0) {
-                            update(state, value);
+                        if (state[j] == 0 && state[j + 1] == 0) {
+                            update(newStates, state, value);
                         }
                     } else {
-                        int left = get(state, j);
-                        int up = get(state, j + 1);
-                        state = set(set(state, j, 0), j + 1, 0);
-                        if (left == 0 && up == 0) {
-                            update(state, value);
+                        if (state[j] == 0 && state[j + 1] == 0) {
+                            update(newStates, state, value - weight[i][j]);
+                            if (weight[i][j + 1] > 0 && weight[i + 1][j] > 0) {
+                                update(newStates, state.set(j, 2).set(j + 1, 3), value);
+                            }
                             if (weight[i + 1][j] > 0) {
-                                update(set(state, j, 1), value + weight[i][j]);
+                                update(newStates, state.set(j, 1), value);
                             }
                             if (weight[i][j + 1] > 0) {
-                                update(set(state, j + 1, 1), value + weight[i][j]);
+                                update(newStates, state.set(j + 1, 1), value);
                             }
-                            if (weight[i + 1][j] > 0 && weight[i][j + 1] > 0) {
-                                update(set(set(state, j, 2), j + 1, 3), value + weight[i][j]);
-                            }
-                        } else if (left == 0 || up == 0) {
-                            int all = left | up;
-                            if (all == 1) {
-                                result = max(result, value + weight[i][j]);
+                        } else if (state[j] == 0 || state[j + 1] == 0) {
+                            int type = state[j] | state[j + 1];
+                            if (type == 1) {
+                                if (state.set(j, 0).set(j + 1, 0).empty()) {
+                                    result = max(result, value);
+                                }
                             } else {
-                                int k = left != 0? findMatch(state, j, left): findMatch(state, j + 1, up);
-                                update(set(state, k, 1), value + weight[i][j]);
+                                if (state[j] > 0) {
+                                    update(newStates, state.set(state.match(j), 1).set(j, 0).set(j + 1, 0), value);
+                                }
+                                if (state[j + 1] > 0) {
+                                    update(newStates, state.set(state.match(j + 1), 1).set(j, 0).set(j + 1, 0), value);
+                                }
                             }
                             if (weight[i + 1][j] > 0) {
-                                update(set(state, j, all), value + weight[i][j]);
+                                update(newStates, state.set(j, type).set(j + 1, 0), value);
                             }
                             if (weight[i][j + 1] > 0) {
-                                update(set(state, j + 1, all), value + weight[i][j]);
+                                update(newStates, state.set(j, 0).set(j + 1, type), value);
                             }
                         } else {
-                            if (left == 1 && up == 1) {
-                                result = max(result, value + weight[i][j]);
-                            } else if (left == 1 || up == 1) {
-                                int k = left != 1? findMatch(state, j, left): findMatch(state, j + 1, up);
-                                update(set(state, k, 1), value + weight[i][j]);
+                            if (state[j] == 1 && state[j + 1] == 1) {
+                                if (state.set(j, 0).set(j + 1, 0).empty()) {
+                                    result = max(result, value);
+                                }
+                            } else if (state[j] == 1 || state[j + 1] == 1) {
+                                if (state[j] != 1) {
+                                    update(newStates, state.set(state.match(j), 1).set(j, 0).set(j + 1, 0), value);
+                                } else {
+                                    update(newStates, state.set(state.match(j + 1), 1).set(j, 0).set(j + 1, 0), value);
+                                }
                             } else {
-                                if (left == 2) {
-                                    if (up == 2) {
-                                        update(set(state, findMatch(state, j + 1, up), 2), value + weight[i][j]);
+                                if (state[j] == 2) {
+                                    if (state[j + 1] == 2) {
+                                        update(newStates, state.set(state.match(j + 1), 2).set(j, 0).set(j + 1, 0), value);
                                     }
                                 } else {
-                                    if (up == 2) {
-                                        update(state, value + weight[i][j]);
+                                    if (state[j + 1] == 2) {
+                                        update(newStates, state.set(j, 0).set(j + 1, 0), value);
                                     } else {
-                                        update(set(state, findMatch(state, j, left), 3), value + weight[i][j]);
+                                        update(newStates, state.set(state.match(j), 3).set(j, 0).set(j + 1, 0), value);
                                     }
                                 }
                             }

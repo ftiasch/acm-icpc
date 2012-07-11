@@ -1,3 +1,4 @@
+// Ural SU and Orel STU contest
 // Problem A -- Fraction
 #include <cstdio>
 #include <cstring>

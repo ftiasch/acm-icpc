@@ -10,5 +10,7 @@
 *.in
 *.out
 
+*.zip
+
 /summary/
 # /my-contests/

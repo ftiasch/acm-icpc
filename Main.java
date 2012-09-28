@@ -5,17 +5,17 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-class Solver {
-    void run(InputReader in, PrintWriter out) throws IOException {
-    }
-}
-
 public class Main {
     public static void main(String args[]) {
         try {
             new Solver().run(new InputReader(System.in), new PrintWriter(System.out));
         } catch (IOException e) {
         }
+    }
+}
+
+class Solver {
+    void run(InputReader in, PrintWriter out) throws IOException {
     }
 }
 

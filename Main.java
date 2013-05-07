@@ -3,6 +3,14 @@ import java.math.*;
 import java.util.*;
 
 public class Main {
+    public void run() {
+        try {
+            // main
+        } catch (IOException ex) {
+        }
+        writer.close();
+    }
+
     InputReader reader;
     PrintWriter writer;
 
@@ -15,13 +23,6 @@ public class Main {
         new Main().run();
     }
 
-    public void run() {
-        try {
-            // main
-        } catch (IOException ex) {
-        }
-        writer.close();
-    }
 }
 
 class InputReader {

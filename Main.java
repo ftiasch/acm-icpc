@@ -23,6 +23,9 @@ public class Main {
         new Main().run();
     }
 
+    void debug(Object...os) {
+        System.err.println(Arrays.deepToString(os));
+    }
 }
 
 class InputReader {

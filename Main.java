@@ -11,11 +11,8 @@ public class Main {
         writer.close();
     }
 
-    InputReader reader;
-    PrintWriter writer;
-
     Main() {
-        reader = new InputReader();
+        reader = new InputReader(System.in);
         writer = new PrintWriter(System.out);
     }
 
@@ -23,28 +20,31 @@ public class Main {
         new Main().run();
     }
 
-    void debug(Object...os) {
+    private void debug(Object...os) {
         System.err.println(Arrays.deepToString(os));
     }
+
+    private InputReader reader;
+    private PrintWriter writer;
 }
 
 class InputReader {
-    BufferedReader reader;
-    StringTokenizer tokenizer;
-
-    InputReader() {
-        reader = new BufferedReader(new InputStreamReader(System.in));
+    InputReader(InputStream in) {
+        reader    = new BufferedReader(new InputStreamReader(in));
         tokenizer = new StringTokenizer("");
     }
 
-    String next() throws IOException {
+    private String next() throws IOException {
         while (!tokenizer.hasMoreTokens()) {
             tokenizer = new StringTokenizer(reader.readLine());
         }
         return tokenizer.nextToken();
     }
 
-    Integer nextInt() throws IOException {
+    public Integer nextInt() throws IOException {
         return Integer.parseInt(next());
     }
+
+    private BufferedReader  reader;
+    private StringTokenizer tokenizer;
 }

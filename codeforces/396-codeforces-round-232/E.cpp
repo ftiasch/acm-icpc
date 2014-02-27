@@ -13,18 +13,6 @@ std::vector <int> primes;
 int delta[N];
 long long count[N], new_count[N];
 
-bool factor(int n)
-{
-    bool result = false;
-    while (n > 1) {
-        int id = min_div[n];
-        result |= count[id] == 0;
-        count[id] ++;
-        n /= primes[id];
-    }
-    return result;
-}
-
 int main()
 {
     memset(min_div, -1, sizeof(min_div));

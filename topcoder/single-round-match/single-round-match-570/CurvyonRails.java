@@ -82,7 +82,7 @@ public class CurvyonRails {
             return new int[]{flow, cost};
         }
     }
-    
+
     int n, m;
 
     int getID(int level, int x, int y) {
@@ -148,104 +148,104 @@ public class CurvyonRails {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			CurvyonRailsHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				CurvyonRailsHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            CurvyonRailsHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                CurvyonRailsHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class CurvyonRailsHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String[] field            = {".."
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
+
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
+
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
+
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
+
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String[] field            = {".."
 ,".."};
-			int expected__            = 0;
+            int expected__            = 0;
 
-			return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
-		}
-		case 1: {
-			String[] field            = {"wCCww"
+            return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
+        }
+        case 1: {
+            String[] field            = {"wCCww"
 ,"wCC.."
 ,"..w.."
 ,"....w"
 ,"ww..w"};
-			int expected__            = 0;
+            int expected__            = 0;
 
-			return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
-		}
-		case 2: {
-			String[] field            = {"C.w"
+            return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
+        }
+        case 2: {
+            String[] field            = {"C.w"
 ,"..."
 ,".C."};
-			int expected__            = 1;
+            int expected__            = 1;
 
-			return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
-		}
-		case 3: {
-			String[] field            = {"."};
-			int expected__            = -1;
+            return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
+        }
+        case 3: {
+            String[] field            = {"."};
+            int expected__            = -1;
 
-			return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
-		}
-		case 4: {
-			String[] field            = {"w"};
-			int expected__            = 0;
+            return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
+        }
+        case 4: {
+            String[] field            = {"w"};
+            int expected__            = 0;
 
-			return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
-		}
-		case 5: {
-			String[] field            = {"CC..CCCw.CwC..CC.w.C",
+            return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
+        }
+        case 5: {
+            String[] field            = {"CC..CCCw.CwC..CC.w.C",
  "C.CCCwCCC.w.w..C.w..",
  "wwww...CC.wC.Cw.CC..",
  "CC..CC.w..w.C..CCCC.",
@@ -266,39 +266,39 @@ class CurvyonRailsHarness {
  "C.w.wC.CC.CCC.C.w.Cw",
  "CCw.CCC..C..CC.CwCCw",
  "C.wwwww.CwwCCwwwwwww"};
-			int expected__            = 9;
+            int expected__            = 9;
 
-			return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
-		}
+            return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
+        }
 
-		// custom cases
+        // custom cases
 
       case 6: {
-			String[] field            = {
+            String[] field            = {
 "CCC",
 "CCC",
 "CCC"
 };
-			int expected__            = -1;
+            int expected__            = -1;
 
-			return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
-		}
+            return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
+        }
 /*      case 7: {
-			String[] field            = ;
-			int expected__            = ;
+            String[] field            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
-		}*/
+            return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
+        }*/
 /*      case 8: {
-			String[] field            = ;
-			int expected__            = ;
+            String[] field            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new CurvyonRails().getmin(field));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

@@ -121,163 +121,163 @@ public class FoxAndCity {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			FoxAndCityHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				FoxAndCityHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            FoxAndCityHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                FoxAndCityHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class FoxAndCityHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String[] linked           = {"NYN",
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
+
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
+
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
+
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
+
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String[] linked           = {"NYN",
  "YNY",
  "NYN"};
-			int[] want                = {0, 1, 1};
-			int expected__            = 0;
+            int[] want                = {0, 1, 1};
+            int expected__            = 0;
 
-			return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
-		}
-		case 1: {
-			String[] linked           = {"NYNN",
+            return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
+        }
+        case 1: {
+            String[] linked           = {"NYNN",
  "YNYN",
  "NYNY",
  "NNYN"};
-			int[] want                = {0, 3, 3, 3};
-			int expected__            = 5;
+            int[] want                = {0, 3, 3, 3};
+            int expected__            = 5;
 
-			return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
-		}
-		case 2: {
-			String[] linked           = {"NYNNNY",
+            return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
+        }
+        case 2: {
+            String[] linked           = {"NYNNNY",
  "YNYNNN",
  "NYNYNN",
  "NNYNYN",
  "NNNYNY",
  "YNNNYN"};
-			int[] want                = {0, 2, 2, 2, 2, 2};
-			int expected__            = 2;
+            int[] want                = {0, 2, 2, 2, 2, 2};
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
-		}
-		case 3: {
-			String[] linked           = {"NYY","YNN","YNN"};
-			int[] want                = {0,0,0};
-			int expected__            = 2;
+            return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
+        }
+        case 3: {
+            String[] linked           = {"NYY","YNN","YNN"};
+            int[] want                = {0,0,0};
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
-		}
-		case 4: {
-			String[] linked           = {"NYNNNN",
+            return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
+        }
+        case 4: {
+            String[] linked           = {"NYNNNN",
  "YNYNNN",
  "NYNYYY",
  "NNYNYY",
  "NNYYNY",
  "NNYYYN"}
 ;
-			int[] want                = {0, 1, 2, 3, 0, 3};
-			int expected__            = 3;
+            int[] want                = {0, 1, 2, 3, 0, 3};
+            int expected__            = 3;
 
-			return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
-		}
-		case 5: {
-			String[] linked           = {"NYNNNN",
+            return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
+        }
+        case 5: {
+            String[] linked           = {"NYNNNN",
  "YNYNNN",
  "NYNYYY",
  "NNYNYY",
  "NNYYNY",
  "NNYYYN"};
-			int[] want                = {0, 1, 2, 4, 0, 4};
-			int expected__            = 6;
+            int[] want                = {0, 1, 2, 4, 0, 4};
+            int expected__            = 6;
 
-			return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
-		}
-		case 6: {
-			String[] linked           = {"NYNYYYYYYYY","YNYNNYYNYYY","NYNNNYYNYYN","YNNNYYYYYYY","YNNYNYYYNYY","YYYYYNNYYNY","YYYYYNNNYYY","YNNYYYNNNYY","YYYYNYYNNNY","YYYYYNYYNNY","YYNYYYYYYYN"};
-			int[] want                = {0,1,2,0,0,5,1,3,0,2,3};
-			int expected__            = 28;
+            return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
+        }
+        case 6: {
+            String[] linked           = {"NYNYYYYYYYY","YNYNNYYNYYY","NYNNNYYNYYN","YNNNYYYYYYY","YNNYNYYYNYY","YYYYYNNYYNY","YYYYYNNNYYY","YNNYYYNNNYY","YYYYNYYNNNY","YYYYYNYYNNY","YYNYYYYYYYN"};
+            int[] want                = {0,1,2,0,0,5,1,3,0,2,3};
+            int expected__            = 28;
 
-			return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
-		}
+            return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
+        }
 
-		// custom cases
+        // custom cases
 
 /*      case 7: {
-			String[] linked           = ;
-			int[] want                = ;
-			int expected__            = ;
+            String[] linked           = ;
+            int[] want                = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
-		}*/
+            return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
+        }*/
 /*      case 8: {
-			String[] linked           = ;
-			int[] want                = ;
-			int expected__            = ;
+            String[] linked           = ;
+            int[] want                = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
-		}*/
+            return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
+        }*/
 /*      case 9: {
-			String[] linked           = ;
-			int[] want                = ;
-			int expected__            = ;
+            String[] linked           = ;
+            int[] want                = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new FoxAndCity().minimalCost(linked, want));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

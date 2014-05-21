@@ -74,128 +74,128 @@ public class PrefixFreeSuperset {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			PrefixFreeSupersetHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				PrefixFreeSupersetHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            PrefixFreeSupersetHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                PrefixFreeSupersetHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class PrefixFreeSupersetHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(long expected, long result) { return expected == result; }
-	static String formatResult(long res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, long expected, long received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String[] cur              = {"010"};
-			long k                    = 4;
-			long expected__           = 9;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
-		}
-		case 1: {
-			String[] cur              = {"01","000"};
-			long k                    = 4;
-			long expected__           = 9;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
-		}
-		case 2: {
-			String[] cur              = {"0011","011110101","11101010111","11101010100000000","11101010100000001111"};
-			long k                    = 1000000000000L;
-			long expected__           = 39971901640560L;
+    static boolean compareOutput(long expected, long result) { return expected == result; }
+    static String formatResult(long res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
-		}
-		case 3: {
-			String[] cur              = {"010","00","011","1"};
-			long k                    = 4;
-			long expected__           = 9;
+    static int verifyCase(int casenum, long expected, long received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
-		}
-		case 4: {
-			String[] cur              = {"010","00","011","1"};
-			long k                    = 5;
-			long expected__           = -1;
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String[] cur              = {"010"};
+            long k                    = 4;
+            long expected__           = 9;
 
-			return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
-		}
+            return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
+        }
+        case 1: {
+            String[] cur              = {"01","000"};
+            long k                    = 4;
+            long expected__           = 9;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
+        }
+        case 2: {
+            String[] cur              = {"0011","011110101","11101010111","11101010100000000","11101010100000001111"};
+            long k                    = 1000000000000L;
+            long expected__           = 39971901640560L;
+
+            return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
+        }
+        case 3: {
+            String[] cur              = {"010","00","011","1"};
+            long k                    = 4;
+            long expected__           = 9;
+
+            return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
+        }
+        case 4: {
+            String[] cur              = {"010","00","011","1"};
+            long k                    = 5;
+            long expected__           = -1;
+
+            return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
+        }
+
+        // custom cases
 
 /*      case 5: {
-			String[] cur              = ;
-			long k                    = ;
-			long expected__           = ;
+            String[] cur              = ;
+            long k                    = ;
+            long expected__           = ;
 
-			return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
-		}*/
+            return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
+        }*/
 /*      case 6: {
-			String[] cur              = ;
-			long k                    = ;
-			long expected__           = ;
+            String[] cur              = ;
+            long k                    = ;
+            long expected__           = ;
 
-			return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
-		}*/
+            return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
+        }*/
 /*      case 7: {
-			String[] cur              = ;
-			long k                    = ;
-			long expected__           = ;
+            String[] cur              = ;
+            long k                    = ;
+            long expected__           = ;
 
-			return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new PrefixFreeSuperset().minSumLength(cur, k));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

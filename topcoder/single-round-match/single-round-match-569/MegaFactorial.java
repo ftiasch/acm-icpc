@@ -80,7 +80,7 @@ public class MegaFactorial {
         return a == 1 ? 1 : (MOD - MOD / a) * inverse(MOD % a) % MOD;
     }
 
-    public int countTrailingZeros(int n, int k, int b) {		
+    public int countTrailingZeros(int n, int k, int b) {
         int[] primes = {7, 5, 3, 2};
         int prime = -1;
         for (int i = 0; i < 4 && prime == -1; ++ i) {
@@ -104,136 +104,136 @@ public class MegaFactorial {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			MegaFactorialHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				MegaFactorialHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            MegaFactorialHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                MegaFactorialHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class MegaFactorialHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int N                     = 6;
-			int K                     = 1;
-			int B                     = 4;
-			int expected__            = 2;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
-		}
-		case 1: {
-			int N                     = 4;
-			int K                     = 2;
-			int B                     = 6;
-			int expected__            = 2;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
-		}
-		case 2: {
-			int N                     = 10;
-			int K                     = 3;
-			int B                     = 10;
-			int expected__            = 22;
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
-		}
-		case 3: {
-			int N                     = 50;
-			int K                     = 10;
-			int B                     = 8;
-			int expected__            = 806813906;
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
-		}
-		case 4: {
-			int N                     = 1000000000;
-			int K                     = 16;
-			int B                     = 2;
-			int expected__            = 633700413;
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int N                     = 6;
+            int K                     = 1;
+            int B                     = 4;
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
-		}
+            return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
+        }
+        case 1: {
+            int N                     = 4;
+            int K                     = 2;
+            int B                     = 6;
+            int expected__            = 2;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
+        }
+        case 2: {
+            int N                     = 10;
+            int K                     = 3;
+            int B                     = 10;
+            int expected__            = 22;
+
+            return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
+        }
+        case 3: {
+            int N                     = 50;
+            int K                     = 10;
+            int B                     = 8;
+            int expected__            = 806813906;
+
+            return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
+        }
+        case 4: {
+            int N                     = 1000000000;
+            int K                     = 16;
+            int B                     = 2;
+            int expected__            = 633700413;
+
+            return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
+        }
+
+        // custom cases
 
 /*      case 5: {
-			int N                     = ;
-			int K                     = ;
-			int B                     = ;
-			int expected__            = ;
+            int N                     = ;
+            int K                     = ;
+            int B                     = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
-		}*/
+            return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
+        }*/
 /*      case 6: {
-			int N                     = ;
-			int K                     = ;
-			int B                     = ;
-			int expected__            = ;
+            int N                     = ;
+            int K                     = ;
+            int B                     = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
-		}*/
+            return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
+        }*/
 /*      case 7: {
-			int N                     = ;
-			int K                     = ;
-			int B                     = ;
-			int expected__            = ;
+            int N                     = ;
+            int K                     = ;
+            int B                     = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new MegaFactorial().countTrailingZeros(N, K, B));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

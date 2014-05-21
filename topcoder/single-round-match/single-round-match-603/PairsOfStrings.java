@@ -76,128 +76,128 @@ public class PairsOfStrings {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			PairsOfStringsHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				PairsOfStringsHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            PairsOfStringsHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                PairsOfStringsHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class PairsOfStringsHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int n                     = 2;
-			int k                     = 2;
-			int expected__            = 6;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
-		}
-		case 1: {
-			int n                     = 3;
-			int k                     = 2;
-			int expected__            = 20;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
-		}
-		case 2: {
-			int n                     = 3;
-			int k                     = 4;
-			int expected__            = 184;
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
-		}
-		case 3: {
-			int n                     = 6;
-			int k                     = 2;
-			int expected__            = 348;
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
-		}
-		case 4: {
-			int n                     = 100;
-			int k                     = 26;
-			int expected__            = 46519912;
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int n                     = 2;
+            int k                     = 2;
+            int expected__            = 6;
 
-			return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
-		}
+            return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
+        }
+        case 1: {
+            int n                     = 3;
+            int k                     = 2;
+            int expected__            = 20;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
+        }
+        case 2: {
+            int n                     = 3;
+            int k                     = 4;
+            int expected__            = 184;
+
+            return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
+        }
+        case 3: {
+            int n                     = 6;
+            int k                     = 2;
+            int expected__            = 348;
+
+            return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
+        }
+        case 4: {
+            int n                     = 100;
+            int k                     = 26;
+            int expected__            = 46519912;
+
+            return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
+        }
+
+        // custom cases
 
 /*      case 5: {
-			int n                     = ;
-			int k                     = ;
-			int expected__            = ;
+            int n                     = ;
+            int k                     = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
-		}*/
+            return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
+        }*/
 /*      case 6: {
-			int n                     = ;
-			int k                     = ;
-			int expected__            = ;
+            int n                     = ;
+            int k                     = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
-		}*/
+            return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
+        }*/
 /*      case 7: {
-			int n                     = ;
-			int k                     = ;
-			int expected__            = ;
+            int n                     = ;
+            int k                     = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new PairsOfStrings().getNumber(n, k));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

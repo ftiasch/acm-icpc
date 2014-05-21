@@ -197,156 +197,156 @@ public class InducedSubgraphs {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			InducedSubgraphsHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				InducedSubgraphsHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            InducedSubgraphsHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                InducedSubgraphsHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class InducedSubgraphsHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int[] edge1               = {0, 1};
-			int[] edge2               = {1, 2};
-			int k                     = 2;
-			int expected__            = 2;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
-		}
-		case 1: {
-			int[] edge1               = {0, 1, 3};
-			int[] edge2               = {2, 2, 2};
-			int k                     = 3;
-			int expected__            = 12;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
-		}
-		case 2: {
-			int[] edge1               = {5, 0, 1, 2, 2};
-			int[] edge2               = {0, 1, 2, 4, 3};
-			int k                     = 3;
-			int expected__            = 4;
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
-		}
-		case 3: {
-			int[] edge1               = {0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6};
-			int[] edge2               = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
-			int k                     = 11;
-			int expected__            = 481904640;
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
-		}
-		case 4: {
-			int[] edge1               = {5, 9, 4, 10, 10, 0, 7, 6, 2, 1, 11, 8} ;
-			int[] edge2               = {0, 0, 10, 3, 0, 6, 1, 1, 12, 12, 7, 11} ;
-			int k                     = 6;
-			int expected__            = 800;
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int[] edge1               = {0, 1};
+            int[] edge2               = {1, 2};
+            int k                     = 2;
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
-		}
-		case 5: {
-			int[] edge1               = {0, 5, 1, 0, 2, 3, 5} ;
-			int[] edge2               = {4, 7, 0, 6, 7, 5, 0} ;
-			int k                     = 3;
-			int expected__            = 0;
+            return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
+        }
+        case 1: {
+            int[] edge1               = {0, 1, 3};
+            int[] edge2               = {2, 2, 2};
+            int k                     = 3;
+            int expected__            = 12;
 
-			return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
-		}
-		case 6: {
-			int[] edge1               = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-			int[] edge2               = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-			int k                     = 1;
-			int expected__            = 890964601;
+            return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
+        }
+        case 2: {
+            int[] edge1               = {5, 0, 1, 2, 2};
+            int[] edge2               = {0, 1, 2, 4, 3};
+            int k                     = 3;
+            int expected__            = 4;
 
-			return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
-		}
+            return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
+        }
+        case 3: {
+            int[] edge1               = {0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6};
+            int[] edge2               = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+            int k                     = 11;
+            int expected__            = 481904640;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
+        }
+        case 4: {
+            int[] edge1               = {5, 9, 4, 10, 10, 0, 7, 6, 2, 1, 11, 8} ;
+            int[] edge2               = {0, 0, 10, 3, 0, 6, 1, 1, 12, 12, 7, 11} ;
+            int k                     = 6;
+            int expected__            = 800;
+
+            return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
+        }
+        case 5: {
+            int[] edge1               = {0, 5, 1, 0, 2, 3, 5} ;
+            int[] edge2               = {4, 7, 0, 6, 7, 5, 0} ;
+            int k                     = 3;
+            int expected__            = 0;
+
+            return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
+        }
+        case 6: {
+            int[] edge1               = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            int[] edge2               = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+            int k                     = 1;
+            int expected__            = 890964601;
+
+            return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
+        }
+
+        // custom cases
 
         case 7: {
-			int[] edge1               = new int[40];
-			int[] edge2               = new int[40];
+            int[] edge1               = new int[40];
+            int[] edge2               = new int[40];
             for (int i = 0; i < 40; ++ i) {
                 edge1[i] = i;
                 edge2[i] = 40;
             }
-			int k                     = 31;
-			int expected__            = 79888617;
+            int k                     = 31;
+            int expected__            = 79888617;
 
-			return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
-		}
+            return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
+        }
 /*      case 8: {
-			int[] edge1               = ;
-			int[] edge2               = ;
-			int k                     = ;
-			int expected__            = ;
+            int[] edge1               = ;
+            int[] edge2               = ;
+            int k                     = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
-		}*/
+            return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
+        }*/
 /*      case 9: {
-			int[] edge1               = ;
-			int[] edge2               = ;
-			int k                     = ;
-			int expected__            = ;
+            int[] edge1               = ;
+            int[] edge2               = ;
+            int k                     = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new InducedSubgraphs().getCount(edge1, edge2, k));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

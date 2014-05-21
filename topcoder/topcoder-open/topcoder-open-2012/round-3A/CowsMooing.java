@@ -51,7 +51,7 @@ public class CowsMooing {
                 int length = pattern.length();
                 if (length == 7) {
                     length = 49;
-                } 
+                }
                 for (int j = 0; j < length; ++ j) {
                     if (pattern.charAt(j % pattern.length()) == 'M') {
                         current[length][j] ++;
@@ -93,104 +93,104 @@ public class CowsMooing {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			CowsMooingHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				CowsMooingHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            CowsMooingHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                CowsMooingHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class CowsMooingHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int[] expected, int[] result) { if (expected.length != result.length) return false; for (int i=0; i<expected.length; ++i) if (expected[i] != result[i]) return false; return true; }
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static String formatResult(int[] res) {
-		String ret = "";
-		ret += "{";
-		for (int i=0; i<res.length; ++i) {
-			if (i > 0) ret += ",";
-			ret += String.format(" %d", res[i]);
-		}
-		ret += " }";
-		return ret;
-	}
-	
-	static int verifyCase(int casenum, int[] expected, int[] received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String[] patterns         = {"M"};
-			int[] expected__          = {0, 3235 };
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
-		}
-		case 1: {
-			String[] patterns         = {"M--M-",
+    static boolean compareOutput(int[] expected, int[] result) { if (expected.length != result.length) return false; for (int i=0; i<expected.length; ++i) if (expected[i] != result[i]) return false; return true; }
+
+    static String formatResult(int[] res) {
+        String ret = "";
+        ret += "{";
+        for (int i=0; i<res.length; ++i) {
+            if (i > 0) ret += ",";
+            ret += String.format(" %d", res[i]);
+        }
+        ret += " }";
+        return ret;
+    }
+
+    static int verifyCase(int casenum, int[] expected, int[] received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
+
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String[] patterns         = {"M"};
+            int[] expected__          = {0, 3235 };
+
+            return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
+        }
+        case 1: {
+            String[] patterns         = {"M--M-",
  "-M-M-"};
-			int[] expected__          = {1294, 1294, 647 };
+            int[] expected__          = {1294, 1294, 647 };
 
-			return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
-		}
-		case 2: {
-			String[] patterns         = {"M--",
+            return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
+        }
+        case 2: {
+            String[] patterns         = {"M--",
  "-M--"};
-			int[] expected__          = {6621, 514, 6107 };
+            int[] expected__          = {6621, 514, 6107 };
 
-			return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
-		}
-		case 3: {
-			String[] patterns         = {"MM-M---M-MM--",
+            return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
+        }
+        case 3: {
+            String[] patterns         = {"MM-M---M-MM--",
  "-MM-MMM----M-M-",
  "MM-",
  "M--M-M--"};
-			int[] expected__          = {7907, 7504, 964, 9034, 7847 };
+            int[] expected__          = {7907, 7504, 964, 9034, 7847 };
 
-			return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
-		}
-		case 4: {
-			String[] patterns         = {"-",
+            return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
+        }
+        case 4: {
+            String[] patterns         = {"-",
  "-M",
  "-MM",
  "-M--",
@@ -220,12 +220,12 @@ class CowsMooingHarness {
  "M----MMMMMMM-MM--MMM---M----",
  "-M-MMM-MMMM-MM--M-MMM---M----",
  "M--M-M-MM-MMM--M---MMMMMM-M-MM"};
-			int[] expected__          = {0, 0, 0, 9523, 1842, 4448, 752, 9392, 9394, 7124, 193, 2222, 1873, 1875, 5758, 5429, 1847, 9481, 7496, 108, 7880, 4988, 2656, 4783, 4261, 9987, 0, 0, 0, 0, 0 };
+            int[] expected__          = {0, 0, 0, 9523, 1842, 4448, 752, 9392, 9394, 7124, 193, 2222, 1873, 1875, 5758, 5429, 1847, 9481, 7496, 108, 7880, 4988, 2656, 4783, 4261, 9987, 0, 0, 0, 0, 0 };
 
-			return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
-		}
-		case 5: {
-			String[] patterns         = {
+            return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
+        }
+        case 5: {
+            String[] patterns         = {
 "MMMMMMMMMMMMMMMMMMMMM",
 "MMMMMMMMMMMMMMMMMMMMMM",
 "MMMMMMMMMMMMMMMMMMMMMMM",
@@ -257,35 +257,35 @@ class CowsMooingHarness {
 "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
 "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"}
 ;
-			int[] expected__          = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3235 };
+            int[] expected__          = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3235 };
 
-			return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
-		}
+            return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
+        }
 
-		// custom cases
+        // custom cases
 
 /*      case 6: {
-			String[] patterns         = ;
-			int[] expected__          = ;
+            String[] patterns         = ;
+            int[] expected__          = ;
 
-			return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
-		}*/
+            return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
+        }*/
 /*      case 7: {
-			String[] patterns         = ;
-			int[] expected__          = ;
+            String[] patterns         = ;
+            int[] expected__          = ;
 
-			return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
-		}*/
+            return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
+        }*/
 /*      case 8: {
-			String[] patterns         = ;
-			int[] expected__          = ;
+            String[] patterns         = ;
+            int[] expected__          = ;
 
-			return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new CowsMooing().getDistribution(patterns));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

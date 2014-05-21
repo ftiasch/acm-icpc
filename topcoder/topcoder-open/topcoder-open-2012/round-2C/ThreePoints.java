@@ -65,7 +65,7 @@ public class ThreePoints {
         }
     }
 
-    public long countColoring(int n, int xzero, int xmul, int xadd, int xmod, int yzero, int ymul, int yadd, int ymod) {		
+    public long countColoring(int n, int xzero, int xmul, int xadd, int xmod, int yzero, int ymul, int yadd, int ymod) {
         int[] xs = generate(n, xzero, xmul, xadd, xmod);
         int[] ys = generate(n, yzero, ymul, yadd, ymod);
 
@@ -92,170 +92,170 @@ public class ThreePoints {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			ThreePointsHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				ThreePointsHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            ThreePointsHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                ThreePointsHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class ThreePointsHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(long expected, long result) { return expected == result; }
-	static String formatResult(long res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, long expected, long received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int N                     = 9;
-			int xzero                 = 3;
-			int xmul                  = 8;
-			int xadd                  = 6;
-			int xmod                  = 11;
-			int yzero                 = 5;
-			int ymul                  = 7;
-			int yadd                  = 8;
-			int ymod                  = 11;
-			long expected__           = 8;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
-		}
-		case 1: {
-			int N                     = 4;
-			int xzero                 = 9;
-			int xmul                  = 6;
-			int xadd                  = 8;
-			int xmod                  = 10;
-			int yzero                 = 4;
-			int ymul                  = 8;
-			int yadd                  = 5;
-			int ymod                  = 10;
-			long expected__           = 2;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
-		}
-		case 2: {
-			int N                     = 20;
-			int xzero                 = 30;
-			int xmul                  = 3;
-			int xadd                  = 71;
-			int xmod                  = 100;
-			int yzero                 = 78;
-			int ymul                  = 12;
-			int yadd                  = 50;
-			int ymod                  = 100;
-			long expected__           = 263;
+    static boolean compareOutput(long expected, long result) { return expected == result; }
+    static String formatResult(long res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
-		}
-		case 3: {
-			int N                     = 300000;
-			int xzero                 = 99097861;
-			int xmul                  = 102766912;
-			int xadd                  = 95284952;
-			int xmod                  = 123456789;
-			int yzero                 = 443104491;
-			int ymul                  = 971853214;
-			int yadd                  = 569775557;
-			int ymod                  = 987654321;
-			long expected__           = 749410681185726L;
+    static int verifyCase(int casenum, long expected, long received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
-		}
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int N                     = 9;
+            int xzero                 = 3;
+            int xmul                  = 8;
+            int xadd                  = 6;
+            int xmod                  = 11;
+            int yzero                 = 5;
+            int ymul                  = 7;
+            int yadd                  = 8;
+            int ymod                  = 11;
+            long expected__           = 8;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
+        }
+        case 1: {
+            int N                     = 4;
+            int xzero                 = 9;
+            int xmul                  = 6;
+            int xadd                  = 8;
+            int xmod                  = 10;
+            int yzero                 = 4;
+            int ymul                  = 8;
+            int yadd                  = 5;
+            int ymod                  = 10;
+            long expected__           = 2;
+
+            return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
+        }
+        case 2: {
+            int N                     = 20;
+            int xzero                 = 30;
+            int xmul                  = 3;
+            int xadd                  = 71;
+            int xmod                  = 100;
+            int yzero                 = 78;
+            int ymul                  = 12;
+            int yadd                  = 50;
+            int ymod                  = 100;
+            long expected__           = 263;
+
+            return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
+        }
+        case 3: {
+            int N                     = 300000;
+            int xzero                 = 99097861;
+            int xmul                  = 102766912;
+            int xadd                  = 95284952;
+            int xmod                  = 123456789;
+            int yzero                 = 443104491;
+            int ymul                  = 971853214;
+            int yadd                  = 569775557;
+            int ymod                  = 987654321;
+            long expected__           = 749410681185726L;
+
+            return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
+        }
+
+        // custom cases
 
 /*      case 4: {
-			int N                     = ;
-			int xzero                 = ;
-			int xmul                  = ;
-			int xadd                  = ;
-			int xmod                  = ;
-			int yzero                 = ;
-			int ymul                  = ;
-			int yadd                  = ;
-			int ymod                  = ;
-			long expected__           = ;
+            int N                     = ;
+            int xzero                 = ;
+            int xmul                  = ;
+            int xadd                  = ;
+            int xmod                  = ;
+            int yzero                 = ;
+            int ymul                  = ;
+            int yadd                  = ;
+            int ymod                  = ;
+            long expected__           = ;
 
-			return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
-		}*/
+            return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
+        }*/
 /*      case 5: {
-			int N                     = ;
-			int xzero                 = ;
-			int xmul                  = ;
-			int xadd                  = ;
-			int xmod                  = ;
-			int yzero                 = ;
-			int ymul                  = ;
-			int yadd                  = ;
-			int ymod                  = ;
-			long expected__           = ;
+            int N                     = ;
+            int xzero                 = ;
+            int xmul                  = ;
+            int xadd                  = ;
+            int xmod                  = ;
+            int yzero                 = ;
+            int ymul                  = ;
+            int yadd                  = ;
+            int ymod                  = ;
+            long expected__           = ;
 
-			return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
-		}*/
+            return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
+        }*/
 /*      case 6: {
-			int N                     = ;
-			int xzero                 = ;
-			int xmul                  = ;
-			int xadd                  = ;
-			int xmod                  = ;
-			int yzero                 = ;
-			int ymul                  = ;
-			int yadd                  = ;
-			int ymod                  = ;
-			long expected__           = ;
+            int N                     = ;
+            int xzero                 = ;
+            int xmul                  = ;
+            int xadd                  = ;
+            int xmod                  = ;
+            int yzero                 = ;
+            int ymul                  = ;
+            int yadd                  = ;
+            int ymod                  = ;
+            long expected__           = ;
 
-			return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new ThreePoints().countColoring(N, xzero, xmul, xadd, xmod, yzero, ymul, yadd, ymod));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

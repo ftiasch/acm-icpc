@@ -48,7 +48,7 @@ public class DisjointSemicircles {
         if (i < used.length) {
             if (used[i]) {
                 return generate(indexes, pairs, used, i + 1);
-            } 
+            }
             for (int j = i + 1; j < used.length; ++ j) {
                 if (!used[j]) {
                     used[j] = true;
@@ -166,132 +166,132 @@ public class DisjointSemicircles {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			DisjointSemicirclesHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				DisjointSemicirclesHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            DisjointSemicirclesHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                DisjointSemicirclesHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class DisjointSemicirclesHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(String expected, String result) { return expected.equals(result); }
-	static String formatResult(String res) {
-		return String.format("\"%s\"", res);
-	}
-	
-	static int verifyCase(int casenum, String expected, String received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int[] labels              = { -1, 0, -1, -1, 0, -1 };
-			String expected__         = "POSSIBLE";
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
-		}
-		case 1: {
-			int[] labels              = { 1, -1, 2, 1, -1, 2 };
-			String expected__         = "IMPOSSIBLE";
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
-		}
-		case 2: {
-			int[] labels              = { 2, -1, -1, 0, -1, -1, 2, 0 };
-			String expected__         = "POSSIBLE";
+    static boolean compareOutput(String expected, String result) { return expected.equals(result); }
+    static String formatResult(String res) {
+        return String.format("\"%s\"", res);
+    }
 
-			return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
-		}
-		case 3: {
-			int[] labels              = { -1, 1, 3, -1, 1, 3, -1, -1 };
-			String expected__         = "IMPOSSIBLE";
+    static int verifyCase(int casenum, String expected, String received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
-		}
-		case 4: {
-			int[] labels              = { -1, 5, -1, -1, 3, 6, 8, -1, 10, 7, -1, 7, 8, 0, 11, -1, -1, 11, 0, 10, 4, -1, 6, 5, -1, -1, 9, 9, 4, 3 } ;
-			String expected__         = "POSSIBLE";
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int[] labels              = { -1, 0, -1, -1, 0, -1 };
+            String expected__         = "POSSIBLE";
 
-			return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
-		}
-		case 5: {
-			int[] labels              = { 4, -1, 2, 4, -1, 3, 3, 12, 2, 5, -1, 0, 9, 9, 8, -1, 12, 8, -1, 6, 0, -1, -1, -1, 5, 6, 10, -1, -1, 10 } ;
-			String expected__         = "IMPOSSIBLE";
+            return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
+        }
+        case 1: {
+            int[] labels              = { 1, -1, 2, 1, -1, 2 };
+            String expected__         = "IMPOSSIBLE";
 
-			return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
-		}
-		case 6: {
-			int[] labels              = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 } ;
-			String expected__         = "POSSIBLE";
+            return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
+        }
+        case 2: {
+            int[] labels              = { 2, -1, -1, 0, -1, -1, 2, 0 };
+            String expected__         = "POSSIBLE";
 
-			return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
-		}
+            return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
+        }
+        case 3: {
+            int[] labels              = { -1, 1, 3, -1, 1, 3, -1, -1 };
+            String expected__         = "IMPOSSIBLE";
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
+        }
+        case 4: {
+            int[] labels              = { -1, 5, -1, -1, 3, 6, 8, -1, 10, 7, -1, 7, 8, 0, 11, -1, -1, 11, 0, 10, 4, -1, 6, 5, -1, -1, 9, 9, 4, 3 } ;
+            String expected__         = "POSSIBLE";
+
+            return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
+        }
+        case 5: {
+            int[] labels              = { 4, -1, 2, 4, -1, 3, 3, 12, 2, 5, -1, 0, 9, 9, 8, -1, 12, 8, -1, 6, 0, -1, -1, -1, 5, 6, 10, -1, -1, 10 } ;
+            String expected__         = "IMPOSSIBLE";
+
+            return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
+        }
+        case 6: {
+            int[] labels              = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 } ;
+            String expected__         = "POSSIBLE";
+
+            return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
+        }
+
+        // custom cases
 
         case 7: {
-			int[] labels              = {-1, 7, -1, 11, 15, 10, 4, 9, 2, 5, -1, 11, 12, -1, 2, 13, 15, 9, 14, 8, 10, -1, 0, -1, -1, -1, -1, 1, 12, 14, 7, 13, -1, 6, 3, -1, -1, -1, -1, -1, 1, 6, 0, 8, 3, 4, -1, 5, -1, -1};
-			String expected__         = "IMPOSSIBLE";
+            int[] labels              = {-1, 7, -1, 11, 15, 10, 4, 9, 2, 5, -1, 11, 12, -1, 2, 13, 15, 9, 14, 8, 10, -1, 0, -1, -1, -1, -1, 1, 12, 14, 7, 13, -1, 6, 3, -1, -1, -1, -1, -1, 1, 6, 0, 8, 3, 4, -1, 5, -1, -1};
+            String expected__         = "IMPOSSIBLE";
 
-			return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
-		}
+            return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
+        }
 /*      case 8: {
-			int[] labels              = ;
-			String expected__         = ;
+            int[] labels              = ;
+            String expected__         = ;
 
-			return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
-		}*/
+            return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
+        }*/
 /*      case 9: {
-			int[] labels              = ;
-			String expected__         = ;
+            int[] labels              = ;
+            String expected__         = ;
 
-			return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new DisjointSemicircles().getPossibility(labels));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

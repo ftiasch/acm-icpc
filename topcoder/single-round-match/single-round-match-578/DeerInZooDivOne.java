@@ -214,128 +214,128 @@ public class DeerInZooDivOne {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			DeerInZooDivOneHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				DeerInZooDivOneHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            DeerInZooDivOneHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                DeerInZooDivOneHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class DeerInZooDivOneHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int[] a                   = {0, 1, 2};
-			int[] b                   = {1, 2, 3};
-			int expected__            = 2;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
-		}
-		case 1: {
-			int[] a                   = {1, 8, 1, 7, 4, 2, 5, 2};
-			int[] b                   = {5, 3, 6, 8, 2, 6, 8, 0};
-			int expected__            = 4;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
-		}
-		case 2: {
-			int[] a                   = {0};
-			int[] b                   = {1};
-			int expected__            = 1;
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
-		}
-		case 3: {
-			int[] a                   = {0, 11, 10, 10, 19, 17, 6, 17, 19, 10, 10, 11, 9, 9, 14, 2, 13, 11, 6};
-			int[] b                   = {7, 5, 2, 12, 8, 9, 16, 8, 4, 18, 8, 13, 15, 13, 17, 16, 3, 1, 7};
-			int expected__            = 8;
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
-		}
-		case 4: {
-			int[] a                   = {14, 13, 28, 15, 20, 4, 9, 6, 1, 23, 19, 25, 25, 8, 14, 16, 2, 8, 15, 25, 22, 22, 28, 10, 10, 14, 24, 27, 8};
-			int[] b                   = {21, 5, 12, 13, 27, 1, 24, 17, 27, 17, 23, 14, 18, 26, 7, 26, 11, 0, 25, 23, 3, 29, 22, 11, 22, 29, 15, 28, 29};
-			int expected__            = 11;
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int[] a                   = {0, 1, 2};
+            int[] b                   = {1, 2, 3};
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
-		}
+            return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
+        }
+        case 1: {
+            int[] a                   = {1, 8, 1, 7, 4, 2, 5, 2};
+            int[] b                   = {5, 3, 6, 8, 2, 6, 8, 0};
+            int expected__            = 4;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
+        }
+        case 2: {
+            int[] a                   = {0};
+            int[] b                   = {1};
+            int expected__            = 1;
+
+            return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
+        }
+        case 3: {
+            int[] a                   = {0, 11, 10, 10, 19, 17, 6, 17, 19, 10, 10, 11, 9, 9, 14, 2, 13, 11, 6};
+            int[] b                   = {7, 5, 2, 12, 8, 9, 16, 8, 4, 18, 8, 13, 15, 13, 17, 16, 3, 1, 7};
+            int expected__            = 8;
+
+            return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
+        }
+        case 4: {
+            int[] a                   = {14, 13, 28, 15, 20, 4, 9, 6, 1, 23, 19, 25, 25, 8, 14, 16, 2, 8, 15, 25, 22, 22, 28, 10, 10, 14, 24, 27, 8};
+            int[] b                   = {21, 5, 12, 13, 27, 1, 24, 17, 27, 17, 23, 14, 18, 26, 7, 26, 11, 0, 25, 23, 3, 29, 22, 11, 22, 29, 15, 28, 29};
+            int expected__            = 11;
+
+            return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
+        }
+
+        // custom cases
 
 /*      case 5: {
-			int[] a                   = ;
-			int[] b                   = ;
-			int expected__            = ;
+            int[] a                   = ;
+            int[] b                   = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
-		}*/
+            return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
+        }*/
 /*      case 6: {
-			int[] a                   = ;
-			int[] b                   = ;
-			int expected__            = ;
+            int[] a                   = ;
+            int[] b                   = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
-		}*/
+            return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
+        }*/
 /*      case 7: {
-			int[] a                   = ;
-			int[] b                   = ;
-			int expected__            = ;
+            int[] a                   = ;
+            int[] b                   = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new DeerInZooDivOne().getmax(a, b));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

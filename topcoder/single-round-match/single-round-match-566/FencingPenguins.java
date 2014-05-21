@@ -140,172 +140,172 @@ public class FencingPenguins {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			FencingPenguinsHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				FencingPenguinsHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            FencingPenguinsHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                FencingPenguinsHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class FencingPenguinsHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int numPosts              = 4;
-			int radius                = 10;
-			int[] x                   = {2};
-			int[] y                   = {1};
-			String color              = "R";
-			int expected__            = 3;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
-		}
-		case 1: {
-			int numPosts              = 4;
-			int radius                = 10;
-			int[] x                   = {2,-2};
-			int[] y                   = {1,-1};
-			String color              = "RR";
-			int expected__            = 1;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
-		}
-		case 2: {
-			int numPosts              = 8;
-			int radius                = 10;
-			int[] x                   = {8,-8,-8,8};
-			int[] y                   = {1,-1,1,-1};
-			String color              = "BBBB";
-			int expected__            = 25;
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
-		}
-		case 3: {
-			int numPosts              = 8;
-			int radius                = 10;
-			int[] x                   = {8,-8,-8,8};
-			int[] y                   = {1,-1,1,-1};
-			String color              = "RGBY";
-			int expected__            = 50;
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
-		}
-		case 4: {
-			int numPosts              = 6;
-			int radius                = 5;
-			int[] x                   = {0,0};
-			int[] y                   = {-4,4};
-			String color              = "rB";
-			int expected__            = 6;
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int numPosts              = 4;
+            int radius                = 10;
+            int[] x                   = {2};
+            int[] y                   = {1};
+            String color              = "R";
+            int expected__            = 3;
 
-			return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
-		}
-		case 5: {
-			int numPosts              = 3;
-			int radius                = 5;
-			int[] x                   = {4};
-			int[] y                   = {3};
-			String color              = "y";
-			int expected__            = 0;
+            return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
+        }
+        case 1: {
+            int numPosts              = 4;
+            int radius                = 10;
+            int[] x                   = {2,-2};
+            int[] y                   = {1,-1};
+            String color              = "RR";
+            int expected__            = 1;
 
-			return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
-		}
-		case 6: {
-			int numPosts              = 200;
-			int radius                = 100000;
-			int[] x                   = {1020,30203,2302,203,-12321,-21332,8823,-2133,2323};
-			int[] y                   = {-123,2131,4434,1223,43434,2323,4343,-213,-2325};
-			String color              = "YBYBWWBRr";
-			int expected__            = 27547;
+            return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
+        }
+        case 2: {
+            int numPosts              = 8;
+            int radius                = 10;
+            int[] x                   = {8,-8,-8,8};
+            int[] y                   = {1,-1,1,-1};
+            String color              = "BBBB";
+            int expected__            = 25;
 
-			return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
-		}
+            return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
+        }
+        case 3: {
+            int numPosts              = 8;
+            int radius                = 10;
+            int[] x                   = {8,-8,-8,8};
+            int[] y                   = {1,-1,1,-1};
+            String color              = "RGBY";
+            int expected__            = 50;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
+        }
+        case 4: {
+            int numPosts              = 6;
+            int radius                = 5;
+            int[] x                   = {0,0};
+            int[] y                   = {-4,4};
+            String color              = "rB";
+            int expected__            = 6;
+
+            return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
+        }
+        case 5: {
+            int numPosts              = 3;
+            int radius                = 5;
+            int[] x                   = {4};
+            int[] y                   = {3};
+            String color              = "y";
+            int expected__            = 0;
+
+            return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
+        }
+        case 6: {
+            int numPosts              = 200;
+            int radius                = 100000;
+            int[] x                   = {1020,30203,2302,203,-12321,-21332,8823,-2133,2323};
+            int[] y                   = {-123,2131,4434,1223,43434,2323,4343,-213,-2325};
+            String color              = "YBYBWWBRr";
+            int expected__            = 27547;
+
+            return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
+        }
+
+        // custom cases
 
 /*      case 7: {
-			int numPosts              = ;
-			int radius                = ;
-			int[] x                   = ;
-			int[] y                   = ;
-			String color              = ;
-			int expected__            = ;
+            int numPosts              = ;
+            int radius                = ;
+            int[] x                   = ;
+            int[] y                   = ;
+            String color              = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
-		}*/
+            return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
+        }*/
 /*      case 8: {
-			int numPosts              = ;
-			int radius                = ;
-			int[] x                   = ;
-			int[] y                   = ;
-			String color              = ;
-			int expected__            = ;
+            int numPosts              = ;
+            int radius                = ;
+            int[] x                   = ;
+            int[] y                   = ;
+            String color              = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
-		}*/
+            return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
+        }*/
 /*      case 9: {
-			int numPosts              = ;
-			int radius                = ;
-			int[] x                   = ;
-			int[] y                   = ;
-			String color              = ;
-			int expected__            = ;
+            int numPosts              = ;
+            int radius                = ;
+            int[] x                   = ;
+            int[] y                   = ;
+            String color              = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new FencingPenguins().countWays(numPosts, radius, x, y, color));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

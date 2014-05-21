@@ -36,7 +36,7 @@ struct PalindromeMatrix {
     int find(int u) {
         return parent[u] == -1 ? u : (parent[u] = find(parent[u]));
     }
-    
+
     void merge(int u, int v) {
         if (find(u) != find(v)) {
             parent[find(u)] = find(v);
@@ -118,124 +118,124 @@ struct PalindromeMatrix {
 
 // BEGIN CUT HERE
 namespace moj_harness {
-	int run_test_case(int);
-	void run_test(int casenum = -1, bool quiet = false) {
-		if (casenum != -1) {
-			if (run_test_case(casenum) == -1 && !quiet) {
-				cerr << "Illegal input! Test case " << casenum << " does not exist." << endl;
-			}
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = run_test_case(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			cerr << "No test cases run." << endl;
-		} else if (correct < total) {
-			cerr << "Some cases FAILED (passed " << correct << " of " << total << ")." << endl;
-		} else {
-			cerr << "All " << total << " tests passed!" << endl;
-		}
-	}
-	
-	int verify_case(int casenum, const int &expected, const int &received, clock_t elapsed) { 
-		cerr << "Example " << casenum << "... "; 
-		
-		string verdict;
-		vector<string> info;
-		char buf[100];
-		
-		if (elapsed > CLOCKS_PER_SEC / 200) {
-			sprintf(buf, "time %.2fs", elapsed * (1.0/CLOCKS_PER_SEC));
-			info.push_back(buf);
-		}
-		
-		if (expected == received) {
-			verdict = "PASSED";
-		} else {
-			verdict = "FAILED";
-		}
-		
-		cerr << verdict;
-		if (!info.empty()) {
-			cerr << " (";
-			for (int i=0; i<(int)info.size(); ++i) {
-				if (i > 0) cerr << ", ";
-				cerr << info[i];
-			}
-			cerr << ")";
-		}
-		cerr << endl;
-		
-		if (verdict == "FAILED") {
-			cerr << "    Expected: " << expected << endl; 
-			cerr << "    Received: " << received << endl; 
-		}
-		
-		return verdict == "PASSED";
-	}
+    int run_test_case(int);
+    void run_test(int casenum = -1, bool quiet = false) {
+        if (casenum != -1) {
+            if (run_test_case(casenum) == -1 && !quiet) {
+                cerr << "Illegal input! Test case " << casenum << " does not exist." << endl;
+            }
+            return;
+        }
 
-	int run_test_case(int casenum__) {
-		switch (casenum__) {
-		case 0: {
-			string A[]                = {"0000"
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = run_test_case(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
+
+        if (total == 0) {
+            cerr << "No test cases run." << endl;
+        } else if (correct < total) {
+            cerr << "Some cases FAILED (passed " << correct << " of " << total << ")." << endl;
+        } else {
+            cerr << "All " << total << " tests passed!" << endl;
+        }
+    }
+
+    int verify_case(int casenum, const int &expected, const int &received, clock_t elapsed) {
+        cerr << "Example " << casenum << "... ";
+
+        string verdict;
+        vector<string> info;
+        char buf[100];
+
+        if (elapsed > CLOCKS_PER_SEC / 200) {
+            sprintf(buf, "time %.2fs", elapsed * (1.0/CLOCKS_PER_SEC));
+            info.push_back(buf);
+        }
+
+        if (expected == received) {
+            verdict = "PASSED";
+        } else {
+            verdict = "FAILED";
+        }
+
+        cerr << verdict;
+        if (!info.empty()) {
+            cerr << " (";
+            for (int i=0; i<(int)info.size(); ++i) {
+                if (i > 0) cerr << ", ";
+                cerr << info[i];
+            }
+            cerr << ")";
+        }
+        cerr << endl;
+
+        if (verdict == "FAILED") {
+            cerr << "    Expected: " << expected << endl;
+            cerr << "    Received: " << received << endl;
+        }
+
+        return verdict == "PASSED";
+    }
+
+    int run_test_case(int casenum__) {
+        switch (casenum__) {
+        case 0: {
+            string A[]                = {"0000"
 ,"1000"
 ,"1100"
 ,"1110"};
-			int rowCount              = 2;
-			int columnCount           = 2;
-			int expected__            = 1;
+            int rowCount              = 2;
+            int columnCount           = 2;
+            int expected__            = 1;
 
-			clock_t start__           = clock();
-			int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
-			return verify_case(casenum__, expected__, received__, clock()-start__);
-		}
-		case 1: {
-			string A[]                = {"0000"
+            clock_t start__           = clock();
+            int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
+            return verify_case(casenum__, expected__, received__, clock()-start__);
+        }
+        case 1: {
+            string A[]                = {"0000"
 ,"1000"
 ,"1100"
 ,"1110"};
-			int rowCount              = 3;
-			int columnCount           = 2;
-			int expected__            = 3;
+            int rowCount              = 3;
+            int columnCount           = 2;
+            int expected__            = 3;
 
-			clock_t start__           = clock();
-			int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
-			return verify_case(casenum__, expected__, received__, clock()-start__);
-		}
-		case 2: {
-			string A[]                = {"01"
+            clock_t start__           = clock();
+            int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
+            return verify_case(casenum__, expected__, received__, clock()-start__);
+        }
+        case 2: {
+            string A[]                = {"01"
 ,"10"};
-			int rowCount              = 1;
-			int columnCount           = 1;
-			int expected__            = 1;
+            int rowCount              = 1;
+            int columnCount           = 1;
+            int expected__            = 1;
 
-			clock_t start__           = clock();
-			int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
-			return verify_case(casenum__, expected__, received__, clock()-start__);
-		}
-		case 3: {
-			string A[]                = {"1110"
+            clock_t start__           = clock();
+            int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
+            return verify_case(casenum__, expected__, received__, clock()-start__);
+        }
+        case 3: {
+            string A[]                = {"1110"
 ,"0001"};
-			int rowCount              = 0;
-			int columnCount           = 0;
-			int expected__            = 0;
+            int rowCount              = 0;
+            int columnCount           = 0;
+            int expected__            = 0;
 
-			clock_t start__           = clock();
-			int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
-			return verify_case(casenum__, expected__, received__, clock()-start__);
-		}
-		case 4: {
-			string A[]                = {"01010101"
+            clock_t start__           = clock();
+            int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
+            return verify_case(casenum__, expected__, received__, clock()-start__);
+        }
+        case 4: {
+            string A[]                = {"01010101"
 ,"01010101"
 ,"01010101"
 ,"01010101"
@@ -243,16 +243,16 @@ namespace moj_harness {
 ,"01010101"
 ,"01010101"
 ,"01010101"};
-			int rowCount              = 2;
-			int columnCount           = 3;
-			int expected__            = 8;
+            int rowCount              = 2;
+            int columnCount           = 3;
+            int expected__            = 8;
 
-			clock_t start__           = clock();
-			int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
-			return verify_case(casenum__, expected__, received__, clock()-start__);
-		}
-		case 5: {
-			string A[]                = {"000000000000"
+            clock_t start__           = clock();
+            int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
+            return verify_case(casenum__, expected__, received__, clock()-start__);
+        }
+        case 5: {
+            string A[]                = {"000000000000"
 ,"011101110111"
 ,"010001010101"
 ,"010001010101"
@@ -262,16 +262,16 @@ namespace moj_harness {
 ,"011101110111"
 ,"000000000000"
 ,"000000000000"};
-			int rowCount              = 5;
-			int columnCount           = 9;
-			int expected__            = 14;
+            int rowCount              = 5;
+            int columnCount           = 9;
+            int expected__            = 14;
 
-			clock_t start__           = clock();
-			int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
-			return verify_case(casenum__, expected__, received__, clock()-start__);
-		}
-		case 6: {
-			string A[]                = {"11111101001110"
+            clock_t start__           = clock();
+            int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
+            return verify_case(casenum__, expected__, received__, clock()-start__);
+        }
+        case 6: {
+            string A[]                = {"11111101001110"
 ,"11000111111111"
 ,"00010101111001"
 ,"10110000111111"
@@ -285,60 +285,60 @@ namespace moj_harness {
 ,"01001011001000"
 ,"01010001111010"
 ,"10100000010011"};
-			int rowCount              = 6;
-			int columnCount           = 8;
-			int expected__            = 31;
+            int rowCount              = 6;
+            int columnCount           = 8;
+            int expected__            = 31;
 
-			clock_t start__           = clock();
-			int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
-			return verify_case(casenum__, expected__, received__, clock()-start__);
-		}
+            clock_t start__           = clock();
+            int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
+            return verify_case(casenum__, expected__, received__, clock()-start__);
+        }
 
-		// custom cases
+        // custom cases
 
 /*      case 7: {
-			string A[]                = ;
-			int rowCount              = ;
-			int columnCount           = ;
-			int expected__            = ;
+            string A[]                = ;
+            int rowCount              = ;
+            int columnCount           = ;
+            int expected__            = ;
 
-			clock_t start__           = clock();
-			int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
-			return verify_case(casenum__, expected__, received__, clock()-start__);
-		}*/
+            clock_t start__           = clock();
+            int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
+            return verify_case(casenum__, expected__, received__, clock()-start__);
+        }*/
 /*      case 8: {
-			string A[]                = ;
-			int rowCount              = ;
-			int columnCount           = ;
-			int expected__            = ;
+            string A[]                = ;
+            int rowCount              = ;
+            int columnCount           = ;
+            int expected__            = ;
 
-			clock_t start__           = clock();
-			int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
-			return verify_case(casenum__, expected__, received__, clock()-start__);
-		}*/
+            clock_t start__           = clock();
+            int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
+            return verify_case(casenum__, expected__, received__, clock()-start__);
+        }*/
 /*      case 9: {
-			string A[]                = ;
-			int rowCount              = ;
-			int columnCount           = ;
-			int expected__            = ;
+            string A[]                = ;
+            int rowCount              = ;
+            int columnCount           = ;
+            int expected__            = ;
 
-			clock_t start__           = clock();
-			int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
-			return verify_case(casenum__, expected__, received__, clock()-start__);
-		}*/
-		default:
-			return -1;
-		}
-	}
+            clock_t start__           = clock();
+            int received__            = PalindromeMatrix().minChange(vector <string>(A, A + (sizeof A / sizeof A[0])), rowCount, columnCount);
+            return verify_case(casenum__, expected__, received__, clock()-start__);
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
- 
+
 
 int main(int argc, char *argv[]) {
-	if (argc == 1) {
-		moj_harness::run_test();
-	} else {
-		for (int i=1; i<argc; ++i)
-			moj_harness::run_test(atoi(argv[i]));
-	}
+    if (argc == 1) {
+        moj_harness::run_test();
+    } else {
+        for (int i=1; i<argc; ++i)
+            moj_harness::run_test(atoi(argv[i]));
+    }
 }
 // END CUT HERE

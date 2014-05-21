@@ -70,141 +70,141 @@ public class CentaurCompany {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			CentaurCompanyHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				CentaurCompanyHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            CentaurCompanyHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                CentaurCompanyHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class CentaurCompanyHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static final double MAX_DOUBLE_ERROR = 1E-9;
-	static boolean compareOutput(double expected, double result){ if(Double.isNaN(expected)){ return Double.isNaN(result); }else if(Double.isInfinite(expected)){ if(expected > 0){ return result > 0 && Double.isInfinite(result); }else{ return result < 0 && Double.isInfinite(result); } }else if(Double.isNaN(result) || Double.isInfinite(result)){ return false; }else if(Math.abs(result - expected) < MAX_DOUBLE_ERROR){ return true; }else{ double min = Math.min(expected * (1.0 - MAX_DOUBLE_ERROR), expected * (1.0 + MAX_DOUBLE_ERROR)); double max = Math.max(expected * (1.0 - MAX_DOUBLE_ERROR), expected * (1.0 + MAX_DOUBLE_ERROR)); return result > min && result < max; } }
-	static double relativeError(double expected, double result) { if (Double.isNaN(expected) || Double.isInfinite(expected) || Double.isNaN(result) || Double.isInfinite(result) || expected == 0) return 0; return Math.abs(result-expected) / Math.abs(expected); }
-	
-	static String formatResult(double res) {
-		return String.format("%.10g", res);
-	}
-	
-	static int verifyCase(int casenum, double expected, double received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.print("PASSED");
-			double rerr = relativeError(expected, received);
-			if (rerr > 0) System.err.printf(" (relative error %g)", rerr);
-			System.err.println();
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int[] a                   = {1};
-			int[] b                   = {2};
-			double expected__         = 0.0;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
-		}
-		case 1: {
-			int[] a                   = {1,1,1};
-			int[] b                   = {2,3,4};
-			double expected__         = 0.125;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
-		}
-		case 2: {
-			int[] a                   = {1,2,3,2,2};
-			int[] b                   = {2,3,4,5,6};
-			double expected__         = 0.375;
+    static final double MAX_DOUBLE_ERROR = 1E-9;
+    static boolean compareOutput(double expected, double result){ if(Double.isNaN(expected)){ return Double.isNaN(result); }else if(Double.isInfinite(expected)){ if(expected > 0){ return result > 0 && Double.isInfinite(result); }else{ return result < 0 && Double.isInfinite(result); } }else if(Double.isNaN(result) || Double.isInfinite(result)){ return false; }else if(Math.abs(result - expected) < MAX_DOUBLE_ERROR){ return true; }else{ double min = Math.min(expected * (1.0 - MAX_DOUBLE_ERROR), expected * (1.0 + MAX_DOUBLE_ERROR)); double max = Math.max(expected * (1.0 - MAX_DOUBLE_ERROR), expected * (1.0 + MAX_DOUBLE_ERROR)); return result > min && result < max; } }
+    static double relativeError(double expected, double result) { if (Double.isNaN(expected) || Double.isInfinite(expected) || Double.isNaN(result) || Double.isInfinite(result) || expected == 0) return 0; return Math.abs(result-expected) / Math.abs(expected); }
 
-			return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
-		}
-		case 3: {
-			int[] a                   = {1,2,3,4,5,6,7,8,9};
-			int[] b                   = {2,3,4,5,6,7,8,9,10};
-			double expected__         = 0.41796875;
+    static String formatResult(double res) {
+        return String.format("%.10g", res);
+    }
 
-			return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
-		}
-		case 4: {
-			int[] a                   = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
-			int[] b                   = {2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36};
-			double expected__         = 15.500000001076842;
+    static int verifyCase(int casenum, double expected, double received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.print("PASSED");
+            double rerr = relativeError(expected, received);
+            if (rerr > 0) System.err.printf(" (relative error %g)", rerr);
+            System.err.println();
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
-		}
-		case 5: {
-			int[] a                   = {10, 7, 2, 5, 6, 2, 4, 9, 7};
-			int[] b                   = {8, 10, 10, 4, 1, 6, 2, 2, 3};
-			double expected__         = 0.646484375;
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int[] a                   = {1};
+            int[] b                   = {2};
+            double expected__         = 0.0;
 
-			return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
-		}
+            return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
+        }
+        case 1: {
+            int[] a                   = {1,1,1};
+            int[] b                   = {2,3,4};
+            double expected__         = 0.125;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
+        }
+        case 2: {
+            int[] a                   = {1,2,3,2,2};
+            int[] b                   = {2,3,4,5,6};
+            double expected__         = 0.375;
+
+            return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
+        }
+        case 3: {
+            int[] a                   = {1,2,3,4,5,6,7,8,9};
+            int[] b                   = {2,3,4,5,6,7,8,9,10};
+            double expected__         = 0.41796875;
+
+            return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
+        }
+        case 4: {
+            int[] a                   = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+            int[] b                   = {2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36};
+            double expected__         = 15.500000001076842;
+
+            return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
+        }
+        case 5: {
+            int[] a                   = {10, 7, 2, 5, 6, 2, 4, 9, 7};
+            int[] b                   = {8, 10, 10, 4, 1, 6, 2, 2, 3};
+            double expected__         = 0.646484375;
+
+            return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
+        }
+
+        // custom cases
 
 /*      case 6: {
-			int[] a                   = ;
-			int[] b                   = ;
-			double expected__         = ;
+            int[] a                   = ;
+            int[] b                   = ;
+            double expected__         = ;
 
-			return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
-		}*/
+            return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
+        }*/
 /*      case 7: {
-			int[] a                   = ;
-			int[] b                   = ;
-			double expected__         = ;
+            int[] a                   = ;
+            int[] b                   = ;
+            double expected__         = ;
 
-			return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
-		}*/
+            return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
+        }*/
 /*      case 8: {
-			int[] a                   = ;
-			int[] b                   = ;
-			double expected__         = ;
+            int[] a                   = ;
+            int[] b                   = ;
+            double expected__         = ;
 
-			return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new CentaurCompany().getvalue(a, b));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

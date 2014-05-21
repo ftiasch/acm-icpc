@@ -74,7 +74,7 @@ public class NextAndPrev {
                 result = Math.min(result, cost);
             }
         }
-        
+
         return result < Integer.MAX_VALUE ? result : -1;
     }
 
@@ -84,180 +84,180 @@ public class NextAndPrev {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			NextAndPrevHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				NextAndPrevHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            NextAndPrevHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                NextAndPrevHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class NextAndPrevHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int nextCost              = 5;
-			int prevCost              = 8;
-			String start              = "aeaae";
-			String goal               = "bcbbc";
-			int expected__            = 21;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}
-		case 1: {
-			int nextCost              = 5;
-			int prevCost              = 8;
-			String start              = "aeaae";
-			String goal               = "bccbc";
-			int expected__            = -1;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}
-		case 2: {
-			int nextCost              = 1;
-			int prevCost              = 1;
-			String start              = "srm";
-			String goal               = "srm";
-			int expected__            = 0;
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}
-		case 3: {
-			int nextCost              = 1000;
-			int prevCost              = 39;
-			String start              = "a";
-			String goal               = "b";
-			int expected__            = 975;
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}
-		case 4: {
-			int nextCost              = 123;
-			int prevCost              = 456;
-			String start              = "pqrs";
-			String goal               = "abab";
-			int expected__            = -1;
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int nextCost              = 5;
+            int prevCost              = 8;
+            String start              = "aeaae";
+            String goal               = "bcbbc";
+            int expected__            = 21;
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}
-		case 5: {
-			int nextCost              = 100;
-			int prevCost              = 19;
-			String start              = "topcoder";
-			String goal               = "ssszsffs";
-			int expected__            = 676;
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }
+        case 1: {
+            int nextCost              = 5;
+            int prevCost              = 8;
+            String start              = "aeaae";
+            String goal               = "bccbc";
+            int expected__            = -1;
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}
-		case 6: {
-			int nextCost              = 1;
-			int prevCost              = 1000;
-			String start              = "csk";
-			String goal               = "wog";
-			int expected__            = 64;
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }
+        case 2: {
+            int nextCost              = 1;
+            int prevCost              = 1;
+            String start              = "srm";
+            String goal               = "srm";
+            int expected__            = 0;
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}
-		case 7: {
-			int nextCost              = 7;
-			int prevCost              = 6;
-			String start              = "qwerty";
-			String goal               = "jjjjjj";
-			int expected__            = 125;
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }
+        case 3: {
+            int nextCost              = 1000;
+            int prevCost              = 39;
+            String start              = "a";
+            String goal               = "b";
+            int expected__            = 975;
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}
-		case 8: {
-			int nextCost              = 306;
-			int prevCost              = 26;
-			String start              = "me";
-			String goal               = "ii";
-			int expected__            = 572;
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }
+        case 4: {
+            int nextCost              = 123;
+            int prevCost              = 456;
+            String start              = "pqrs";
+            String goal               = "abab";
+            int expected__            = -1;
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }
+        case 5: {
+            int nextCost              = 100;
+            int prevCost              = 19;
+            String start              = "topcoder";
+            String goal               = "ssszsffs";
+            int expected__            = 676;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }
+        case 6: {
+            int nextCost              = 1;
+            int prevCost              = 1000;
+            String start              = "csk";
+            String goal               = "wog";
+            int expected__            = 64;
+
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }
+        case 7: {
+            int nextCost              = 7;
+            int prevCost              = 6;
+            String start              = "qwerty";
+            String goal               = "jjjjjj";
+            int expected__            = 125;
+
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }
+        case 8: {
+            int nextCost              = 306;
+            int prevCost              = 26;
+            String start              = "me";
+            String goal               = "ii";
+            int expected__            = 572;
+
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }
+
+        // custom cases
 
         case 9: {
-			int nextCost              = 639;
-			int prevCost              = 225;
-			String start              = "abcdefgfijklmnopqrstuvwxyz";
-			String goal               = "tuvwxyzybcdefghijklmnopqrs";
-			int expected__            = 39375;
+            int nextCost              = 639;
+            int prevCost              = 225;
+            String start              = "abcdefgfijklmnopqrstuvwxyz";
+            String goal               = "tuvwxyzybcdefghijklmnopqrs";
+            int expected__            = 39375;
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}  
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }
 /*      case 10: {
-			int nextCost              = ;
-			int prevCost              = ;
-			String start              = ;
-			String goal               = ;
-			int expected__            = ;
+            int nextCost              = ;
+            int prevCost              = ;
+            String start              = ;
+            String goal               = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}*/
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }*/
 /*      case 11: {
-			int nextCost              = ;
-			int prevCost              = ;
-			String start              = ;
-			String goal               = ;
-			int expected__            = ;
+            int nextCost              = ;
+            int prevCost              = ;
+            String start              = ;
+            String goal               = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new NextAndPrev().getMinimum(nextCost, prevCost, start, goal));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

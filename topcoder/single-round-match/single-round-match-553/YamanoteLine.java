@@ -129,151 +129,151 @@ public class YamanoteLine {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			YamanoteLineHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				YamanoteLineHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            YamanoteLineHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                YamanoteLineHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class YamanoteLineHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(long expected, long result) { return expected == result; }
-	static String formatResult(long res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, long expected, long received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int n                     = 3;
-			int[] s1                  = {};
-			int[] t1                  = {};
-			int[] l1                  = {};
-			int[] s2                  = {0,1,2};
-			int[] t2                  = {1,2,0};
-			int[] l2                  = {1,1,1};
-			long expected__           = 1;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
-		}
-		case 1: {
-			int n                     = 3;
-			int[] s1                  = {};
-			int[] t1                  = {};
-			int[] l1                  = {};
-			int[] s2                  = {0,1,2};
-			int[] t2                  = {1,2,0};
-			int[] l2                  = {2,2,2};
-			long expected__           = 4;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
-		}
-		case 2: {
-			int n                     = 3;
-			int[] s1                  = {};
-			int[] t1                  = {};
-			int[] l1                  = {};
-			int[] s2                  = {0,1,2};
-			int[] t2                  = {2,0,1};
-			int[] l2                  = {3,3,3};
-			long expected__           = 2;
+    static boolean compareOutput(long expected, long result) { return expected == result; }
+    static String formatResult(long res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
-		}
-		case 3: {
-			int n                     = 4;
-			int[] s1                  = {0,1,2,3};
-			int[] t1                  = {2,3,0,1};
-			int[] l1                  = {3,4,4,3};
-			int[] s2                  = {1,3};
-			int[] t2                  = {3,1};
-			int[] l2                  = {5,5};
-			long expected__           = 4;
+    static int verifyCase(int casenum, long expected, long received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
-		}
-		case 4: {
-			int n                     = 4;
-			int[] s1                  = {0,2};
-			int[] t1                  = {2,0};
-			int[] l1                  = {5,5};
-			int[] s2                  = {1,3};
-			int[] t2                  = {3,1};
-			int[] l2                  = {4,4};
-			long expected__           = 0;
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int n                     = 3;
+            int[] s1                  = {};
+            int[] t1                  = {};
+            int[] l1                  = {};
+            int[] s2                  = {0,1,2};
+            int[] t2                  = {1,2,0};
+            int[] l2                  = {1,1,1};
+            long expected__           = 1;
 
-			return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
-		}
-		case 5: {
-			int n                     = 5;
-			int[] s1                  = {};
-			int[] t1                  = {};
-			int[] l1                  = {};
-			int[] s2                  = {0,2};
-			int[] t2                  = {2,4};
-			int[] l2                  = {2,2};
-			long expected__           = -1;
+            return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
+        }
+        case 1: {
+            int n                     = 3;
+            int[] s1                  = {};
+            int[] t1                  = {};
+            int[] l1                  = {};
+            int[] s2                  = {0,1,2};
+            int[] t2                  = {1,2,0};
+            int[] l2                  = {2,2,2};
+            long expected__           = 4;
 
-			return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
-		}
-		case 6: {
-			int n                     = 10;
-			int[] s1                  = {5,7,2,3,9,4,6,0,4,2};
-			int[] t1                  = {0,8,3,9,8,0,8,7,1,7};
-			int[] l1                  = {61,54,20,64,25,73,83,79,86,56};
-			int[] s2                  = {4,5,4,0,8,3,8,5,5,9};
-			int[] t2                  = {5,2,0,1,1,4,7,6,8,3};
-			int[] l2                  = {1951,6102,3625,5737,1590,1228,9234,1342,9060,1008};
-			long expected__           = 5726;
+            return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
+        }
+        case 2: {
+            int n                     = 3;
+            int[] s1                  = {};
+            int[] t1                  = {};
+            int[] l1                  = {};
+            int[] s2                  = {0,1,2};
+            int[] t2                  = {2,0,1};
+            int[] l2                  = {3,3,3};
+            long expected__           = 2;
 
-			return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
-		}
+            return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
+        }
+        case 3: {
+            int n                     = 4;
+            int[] s1                  = {0,1,2,3};
+            int[] t1                  = {2,3,0,1};
+            int[] l1                  = {3,4,4,3};
+            int[] s2                  = {1,3};
+            int[] t2                  = {3,1};
+            int[] l2                  = {5,5};
+            long expected__           = 4;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
+        }
+        case 4: {
+            int n                     = 4;
+            int[] s1                  = {0,2};
+            int[] t1                  = {2,0};
+            int[] l1                  = {5,5};
+            int[] s2                  = {1,3};
+            int[] t2                  = {3,1};
+            int[] l2                  = {4,4};
+            long expected__           = 0;
+
+            return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
+        }
+        case 5: {
+            int n                     = 5;
+            int[] s1                  = {};
+            int[] t1                  = {};
+            int[] l1                  = {};
+            int[] s2                  = {0,2};
+            int[] t2                  = {2,4};
+            int[] l2                  = {2,2};
+            long expected__           = -1;
+
+            return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
+        }
+        case 6: {
+            int n                     = 10;
+            int[] s1                  = {5,7,2,3,9,4,6,0,4,2};
+            int[] t1                  = {0,8,3,9,8,0,8,7,1,7};
+            int[] l1                  = {61,54,20,64,25,73,83,79,86,56};
+            int[] s2                  = {4,5,4,0,8,3,8,5,5,9};
+            int[] t2                  = {5,2,0,1,1,4,7,6,8,3};
+            int[] l2                  = {1951,6102,3625,5737,1590,1228,9234,1342,9060,1008};
+            long expected__           = 5726;
+
+            return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
+        }
+
+        // custom cases
 
       case 7: {
             int n = 7;
@@ -283,38 +283,38 @@ class YamanoteLineHarness {
             int[] s2 = {5, 1, 4, 3, 2, 0, 2, 1, 3, 4, 6, 1, 4, 6, 2, 0, 1};
             int[] t2 = {4, 2, 6, 0, 4, 4, 3, 0, 1, 3, 1, 0, 3, 2, 0, 6, 0};
             int[] l2 = {937903, 78534, 455914, 732223, 466737, 678325, 223494, 1045758, 875109, 948016, 171545, 1048632, 941740, 256309, 956402, 1146000, 1046372};
-			long expected__           = 0;
+            long expected__           = 0;
 
-			return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
-		}
+            return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
+        }
 /*      case 8: {
-			int n                     = ;
-			int[] s1                  = ;
-			int[] t1                  = ;
-			int[] l1                  = ;
-			int[] s2                  = ;
-			int[] t2                  = ;
-			int[] l2                  = ;
-			long expected__           = ;
+            int n                     = ;
+            int[] s1                  = ;
+            int[] t1                  = ;
+            int[] l1                  = ;
+            int[] s2                  = ;
+            int[] t2                  = ;
+            int[] l2                  = ;
+            long expected__           = ;
 
-			return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
-		}*/
+            return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
+        }*/
 /*      case 9: {
-			int n                     = ;
-			int[] s1                  = ;
-			int[] t1                  = ;
-			int[] l1                  = ;
-			int[] s2                  = ;
-			int[] t2                  = ;
-			int[] l2                  = ;
-			long expected__           = ;
+            int n                     = ;
+            int[] s1                  = ;
+            int[] t1                  = ;
+            int[] l1                  = ;
+            int[] s2                  = ;
+            int[] t2                  = ;
+            int[] l2                  = ;
+            long expected__           = ;
 
-			return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new YamanoteLine().howMany(n, s1, t1, l1, s2, t2, l2));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

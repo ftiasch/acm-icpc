@@ -42,97 +42,97 @@ public class EllysRoomAssignmentsDiv1 {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			EllysRoomAssignmentsDiv1Harness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				EllysRoomAssignmentsDiv1Harness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            EllysRoomAssignmentsDiv1Harness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                EllysRoomAssignmentsDiv1Harness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class EllysRoomAssignmentsDiv1Harness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static final double MAX_DOUBLE_ERROR = 1E-9;
-	static boolean compareOutput(double expected, double result){ if(Double.isNaN(expected)){ return Double.isNaN(result); }else if(Double.isInfinite(expected)){ if(expected > 0){ return result > 0 && Double.isInfinite(result); }else{ return result < 0 && Double.isInfinite(result); } }else if(Double.isNaN(result) || Double.isInfinite(result)){ return false; }else if(Math.abs(result - expected) < MAX_DOUBLE_ERROR){ return true; }else{ double min = Math.min(expected * (1.0 - MAX_DOUBLE_ERROR), expected * (1.0 + MAX_DOUBLE_ERROR)); double max = Math.max(expected * (1.0 - MAX_DOUBLE_ERROR), expected * (1.0 + MAX_DOUBLE_ERROR)); return result > min && result < max; } }
-	static double relativeError(double expected, double result) { if (Double.isNaN(expected) || Double.isInfinite(expected) || Double.isNaN(result) || Double.isInfinite(result) || expected == 0) return 0; return Math.abs(result-expected) / Math.abs(expected); }
-	
-	static String formatResult(double res) {
-		return String.format("%.10g", res);
-	}
-	
-	static int verifyCase(int casenum, double expected, double received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.print("PASSED");
-			double rerr = relativeError(expected, received);
-			if (rerr > 0) System.err.printf(" (relative error %g)", rerr);
-			System.err.println();
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String[] ratings          = {"1924 1242 1213 1217 2399 1777 2201 2301 1683 2045 ", "1396 2363 1560 2185 1496 2244 2117 2207 2098 1319 ",
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
+
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
+
+    static final double MAX_DOUBLE_ERROR = 1E-9;
+    static boolean compareOutput(double expected, double result){ if(Double.isNaN(expected)){ return Double.isNaN(result); }else if(Double.isInfinite(expected)){ if(expected > 0){ return result > 0 && Double.isInfinite(result); }else{ return result < 0 && Double.isInfinite(result); } }else if(Double.isNaN(result) || Double.isInfinite(result)){ return false; }else if(Math.abs(result - expected) < MAX_DOUBLE_ERROR){ return true; }else{ double min = Math.min(expected * (1.0 - MAX_DOUBLE_ERROR), expected * (1.0 + MAX_DOUBLE_ERROR)); double max = Math.max(expected * (1.0 - MAX_DOUBLE_ERROR), expected * (1.0 + MAX_DOUBLE_ERROR)); return result > min && result < max; } }
+    static double relativeError(double expected, double result) { if (Double.isNaN(expected) || Double.isInfinite(expected) || Double.isNaN(result) || Double.isInfinite(result) || expected == 0) return 0; return Math.abs(result-expected) / Math.abs(expected); }
+
+    static String formatResult(double res) {
+        return String.format("%.10g", res);
+    }
+
+    static int verifyCase(int casenum, double expected, double received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.print("PASSED");
+            double rerr = relativeError(expected, received);
+            if (rerr > 0) System.err.printf(" (relative error %g)", rerr);
+            System.err.println();
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
+
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String[] ratings          = {"1924 1242 1213 1217 2399 1777 2201 2301 1683 2045 ", "1396 2363 1560 2185 1496 2244 2117 2207 2098 1319 ",
  "2216 1223 1256 2359 2394 1572 2151 2191 2147 2253 ", "1633 2217 2211 1591 1310 1209 1430 1445 1988 2030 ",
  "1947 1202 1203"};
-			double expected__         = 1821.3291005291007;
+            double expected__         = 1821.3291005291007;
 
-			return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
-		}
-		case 1: {
-			String[] ratings          = {"3380 3413 3254 3515 2885 2946 2790 3140"};
-			double expected__         = 3165.375;
+            return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
+        }
+        case 1: {
+            String[] ratings          = {"3380 3413 3254 3515 2885 2946 2790 3140"};
+            double expected__         = 3165.375;
 
-			return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
-		}
-		case 2: {
-			String[] ratings          = {"2367 1395 1639 1842 1426 2393 2348 1571 2077 12", "2", "2 1966 1495 13",
+            return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
+        }
+        case 2: {
+            String[] ratings          = {"2367 1395 1639 1842 1426 2393 2348 1571 2077 12", "2", "2 1966 1495 13",
  "09 1251 3039 1566 1989 2083 1819 1875 ", "1579 2206 1503 1461 2262 2116 1429 2150 1834 2097 ",
  "2093 1518 1923 1796 1669 2342 1826 2374 1635 1683 ", "1656 2190 1632 1946 1207 1293 2029 2243 2252 1559 ",
  "2366 1590 1563 2319 1391 1255 1727 1565 1911 1679 ", "1282 2358 1682 2148 3555 2362 1208 2044 1949 1980 ",
  "1983 2215 2184 1545 1665 2146 1272 2110 1889 1829 ", "1808 2065 1987 1297 2216 1609 1318 1816 1444 20", "00 1404"};
-			double expected__         = 1824.662456140351;
+            double expected__         = 1824.662456140351;
 
-			return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
-		}
-		case 3: {
-			String[] ratings          = {"2869 3239 1609 2367 1836 1663 1697 2317 1475 2212 ", "2188 2073 1263 1391 1495 3010 1243 2198 1782 1564 ",
+            return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
+        }
+        case 3: {
+            String[] ratings          = {"2869 3239 1609 2367 1836 1663 1697 2317 1475 2212 ", "2188 2073 1263 1391 1495 3010 1243 2198 1782 1564 ",
 "3594 1219 2037 1473 1624 1435 2159 2315 2056 3029 ", "1863 1297 2245 3206 3510 1728 1246 1230 1875 3511 ",
 "1241 2775 1255 2304 2013 1205 2070 2763 1518 2344 ", "1690 1398 2320 1912 2752 2155 1778 1644 2230 3026 ",
 "1817 1401 1962 1470 1387 2339 3443 1510 2094 2374 ", "1273 1664 2853 1907 2380 3265 2786 1298 1983 1899 ",
@@ -156,41 +156,41 @@ class EllysRoomAssignmentsDiv1Harness {
 "1865 3089 3581 1429 2313 1352 1272 2285 1390 2209 ", "1785 1449 1295 1410 1239 1416 2354 1281 1840 2265 ",
 "2330 3295 1353 1423 1204 2150 2116 3588 1908 1976 ", "2233 1923 1635 1825 1469 2251 1792 1249 2125 2100 ",
 "1833 2281 2142 2093 1920 2144 1565 1590 2826 3045 ", "3475 1911 1695 2067 1634 2319 1376 2348 1529 1682"};
-			double expected__         = 1985.7041666666669;
+            double expected__         = 1985.7041666666669;
 
-			return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
-		}
-		case 4: {
-			String[] ratings          = {"1298 2272 2618 1344 3020 3212 3419 1754 3571 2835 ", "3049 2893 1970 3006 3244 3451 3273 2039 3826 2199 ", "3159"};
-			double expected__         = 2670.4545454545455;
+            return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
+        }
+        case 4: {
+            String[] ratings          = {"1298 2272 2618 1344 3020 3212 3419 1754 3571 2835 ", "3049 2893 1970 3006 3244 3451 3273 2039 3826 2199 ", "3159"};
+            double expected__         = 2670.4545454545455;
 
-			return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
-		}
+            return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
+        }
 
-		// custom cases
+        // custom cases
 
 /*      case 5: {
-			String[] ratings          = ;
-			double expected__         = ;
+            String[] ratings          = ;
+            double expected__         = ;
 
-			return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
-		}*/
+            return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
+        }*/
 /*      case 6: {
-			String[] ratings          = ;
-			double expected__         = ;
+            String[] ratings          = ;
+            double expected__         = ;
 
-			return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
-		}*/
+            return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
+        }*/
 /*      case 7: {
-			String[] ratings          = ;
-			double expected__         = ;
+            String[] ratings          = ;
+            double expected__         = ;
 
-			return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new EllysRoomAssignmentsDiv1().getAverage(ratings));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

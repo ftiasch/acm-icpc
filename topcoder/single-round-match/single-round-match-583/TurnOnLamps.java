@@ -60,144 +60,144 @@ public class TurnOnLamps {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			TurnOnLampsHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				TurnOnLampsHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            TurnOnLampsHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                TurnOnLampsHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class TurnOnLampsHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int[] roads               = {0,0,1,1};
-			String initState          = "0001";
-			String isImportant        = "0111";
-			int expected__            = 1;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
-		}
-		case 1: {
-			int[] roads               = {0,0,1,1};
-			String initState          = "0000";
-			String isImportant        = "0111";
-			int expected__            = 2;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
-		}
-		case 2: {
-			int[] roads               = {0,0,1,1,4,4};
-			String initState          = "000100";
-			String isImportant        = "111111";
-			int expected__            = 2;
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
-		}
-		case 3: {
-			int[] roads               = {0,0,1,1,4,4};
-			String initState          = "100100";
-			String isImportant        = "011101";
-			int expected__            = 2;
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
-		}
-		case 4: {
-			int[] roads               = {0,0,2,2,3,1,6,3,1};
-			String initState          = "010001110";
-			String isImportant        = "000110100";
-			int expected__            = 1;
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int[] roads               = {0,0,1,1};
+            String initState          = "0001";
+            String isImportant        = "0111";
+            int expected__            = 1;
 
-			return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
-		}
-		case 5: {
-			int[] roads               = {0,0,1,2,4,4,6,1,2,5,2,8,8,3,6,4,14,7,18,14,11,7,1,12,7,5,18,23,0,14,11,10,2,2,6,1,30,11,9,12,5,35,25,11,23,17,14,45,15};
-			String initState          = "0000000000010000000000000010000010100000000000000";
-			String isImportant        = "1010111111111011011111000110111111111111111110111";
-			int expected__            = 14;
+            return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
+        }
+        case 1: {
+            int[] roads               = {0,0,1,1};
+            String initState          = "0000";
+            String isImportant        = "0111";
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
-		}
+            return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
+        }
+        case 2: {
+            int[] roads               = {0,0,1,1,4,4};
+            String initState          = "000100";
+            String isImportant        = "111111";
+            int expected__            = 2;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
+        }
+        case 3: {
+            int[] roads               = {0,0,1,1,4,4};
+            String initState          = "100100";
+            String isImportant        = "011101";
+            int expected__            = 2;
+
+            return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
+        }
+        case 4: {
+            int[] roads               = {0,0,2,2,3,1,6,3,1};
+            String initState          = "010001110";
+            String isImportant        = "000110100";
+            int expected__            = 1;
+
+            return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
+        }
+        case 5: {
+            int[] roads               = {0,0,1,2,4,4,6,1,2,5,2,8,8,3,6,4,14,7,18,14,11,7,1,12,7,5,18,23,0,14,11,10,2,2,6,1,30,11,9,12,5,35,25,11,23,17,14,45,15};
+            String initState          = "0000000000010000000000000010000010100000000000000";
+            String isImportant        = "1010111111111011011111000110111111111111111110111";
+            int expected__            = 14;
+
+            return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
+        }
+
+        // custom cases
 
 /*      case 6: {
-			int[] roads               = ;
-			String initState          = ;
-			String isImportant        = ;
-			int expected__            = ;
+            int[] roads               = ;
+            String initState          = ;
+            String isImportant        = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
-		}*/
+            return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
+        }*/
 /*      case 7: {
-			int[] roads               = ;
-			String initState          = ;
-			String isImportant        = ;
-			int expected__            = ;
+            int[] roads               = ;
+            String initState          = ;
+            String isImportant        = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
-		}*/
+            return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
+        }*/
 /*      case 8: {
-			int[] roads               = ;
-			String initState          = ;
-			String isImportant        = ;
-			int expected__            = ;
+            int[] roads               = ;
+            String initState          = ;
+            String isImportant        = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new TurnOnLamps().minimize(roads, initState, isImportant));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

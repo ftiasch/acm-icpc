@@ -36,162 +36,162 @@ public class FoxAndMountainEasy {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			FoxAndMountainEasyHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				FoxAndMountainEasyHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            FoxAndMountainEasyHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                FoxAndMountainEasyHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class FoxAndMountainEasyHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(String expected, String result) { return expected.equals(result); }
-	static String formatResult(String res) {
-		return String.format("\"%s\"", res);
-	}
-	
-	static int verifyCase(int casenum, String expected, String received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int n                     = 4;
-			int h0                    = 0;
-			int hn                    = 4;
-			String history            = "UU";
-			String expected__         = "YES";
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
-		}
-		case 1: {
-			int n                     = 4;
-			int h0                    = 0;
-			int hn                    = 4;
-			String history            = "D";
-			String expected__         = "NO";
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
-		}
-		case 2: {
-			int n                     = 4;
-			int h0                    = 100000;
-			int hn                    = 100000;
-			String history            = "DDU";
-			String expected__         = "YES";
+    static boolean compareOutput(String expected, String result) { return expected.equals(result); }
+    static String formatResult(String res) {
+        return String.format("\"%s\"", res);
+    }
 
-			return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
-		}
-		case 3: {
-			int n                     = 4;
-			int h0                    = 0;
-			int hn                    = 0;
-			String history            = "DDU";
-			String expected__         = "NO";
+    static int verifyCase(int casenum, String expected, String received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
-		}
-		case 4: {
-			int n                     = 20;
-			int h0                    = 20;
-			int hn                    = 20;
-			String history            = "UDUDUDUDUD";
-			String expected__         = "YES";
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int n                     = 4;
+            int h0                    = 0;
+            int hn                    = 4;
+            String history            = "UU";
+            String expected__         = "YES";
 
-			return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
-		}
-		case 5: {
-			int n                     = 20;
-			int h0                    = 0;
-			int hn                    = 0;
-			String history            = "UUUUUUUUUU";
-			String expected__         = "YES";
+            return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
+        }
+        case 1: {
+            int n                     = 4;
+            int h0                    = 0;
+            int hn                    = 4;
+            String history            = "D";
+            String expected__         = "NO";
 
-			return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
-		}
-		case 6: {
-			int n                     = 20;
-			int h0                    = 0;
-			int hn                    = 0;
-			String history            = "UUUUUUUUUUU";
-			String expected__         = "NO";
+            return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
+        }
+        case 2: {
+            int n                     = 4;
+            int h0                    = 100000;
+            int hn                    = 100000;
+            String history            = "DDU";
+            String expected__         = "YES";
 
-			return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
-		}
+            return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
+        }
+        case 3: {
+            int n                     = 4;
+            int h0                    = 0;
+            int hn                    = 0;
+            String history            = "DDU";
+            String expected__         = "NO";
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
+        }
+        case 4: {
+            int n                     = 20;
+            int h0                    = 20;
+            int hn                    = 20;
+            String history            = "UDUDUDUDUD";
+            String expected__         = "YES";
+
+            return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
+        }
+        case 5: {
+            int n                     = 20;
+            int h0                    = 0;
+            int hn                    = 0;
+            String history            = "UUUUUUUUUU";
+            String expected__         = "YES";
+
+            return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
+        }
+        case 6: {
+            int n                     = 20;
+            int h0                    = 0;
+            int hn                    = 0;
+            String history            = "UUUUUUUUUUU";
+            String expected__         = "NO";
+
+            return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
+        }
+
+        // custom cases
 
       case 7: {
-			int n                     = 6;
-			int h0                    = 0;
-			int hn                    = 0;
-			String history            = "DDUU";
-			String expected__         = "NO";
+            int n                     = 6;
+            int h0                    = 0;
+            int hn                    = 0;
+            String history            = "DDUU";
+            String expected__         = "NO";
 
-			return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
-		}
+            return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
+        }
 /*      case 8: {
-			int n                     = ;
-			int h0                    = ;
-			int hn                    = ;
-			String history            = ;
-			String expected__         = ;
+            int n                     = ;
+            int h0                    = ;
+            int hn                    = ;
+            String history            = ;
+            String expected__         = ;
 
-			return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
-		}*/
+            return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
+        }*/
 /*      case 9: {
-			int n                     = ;
-			int h0                    = ;
-			int hn                    = ;
-			String history            = ;
-			String expected__         = ;
+            int n                     = ;
+            int h0                    = ;
+            int hn                    = ;
+            String history            = ;
+            String expected__         = ;
 
-			return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new FoxAndMountainEasy().possible(n, h0, hn, history));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

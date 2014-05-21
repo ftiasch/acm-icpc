@@ -147,184 +147,184 @@ public class PQHulls {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			PQHullsHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				PQHullsHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            PQHullsHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                PQHullsHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class PQHullsHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int N                     = 4;
-			int X0                    = 3;
-			int XMul                  = 3;
-			int XAdd                  = 3;
-			int XMod                  = 10;
-			int Y0                    = 0;
-			int YMul                  = 3;
-			int YAdd                  = 2;
-			int YMod                  = 7;
-			int expected__            = 3;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
-		}
-		case 1: {
-			int N                     = 5;
-			int X0                    = 1;
-			int XMul                  = 5;
-			int XAdd                  = 6;
-			int XMod                  = 8;
-			int Y0                    = 5;
-			int YMul                  = 5;
-			int YAdd                  = 3;
-			int YMod                  = 9;
-			int expected__            = 5;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
-		}
-		case 2: {
-			int N                     = 5;
-			int X0                    = 4;
-			int XMul                  = 1;
-			int XAdd                  = 1;
-			int XMod                  = 8;
-			int Y0                    = 5;
-			int YMul                  = 4;
-			int YAdd                  = 4;
-			int YMod                  = 6;
-			int expected__            = 0;
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
-		}
-		case 3: {
-			int N                     = 99;
-			int X0                    = 9461448;
-			int XMul                  = 38301228;
-			int XAdd                  = 33476602;
-			int XMod                  = 42996440;
-			int Y0                    = 10502745;
-			int YMul                  = 35649230;
-			int YAdd                  = 12271470;
-			int YMod                  = 65500929;
-			int expected__            = 181248946;
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
-		}
-		case 4: {
-			int N                     = 2000;
-			int X0                    = 6927240;
-			int XMul                  = 2020343;
-			int XAdd                  = 10323527;
-			int XMod                  = 10690663;
-			int Y0                    = 28749177;
-			int YMul                  = 29744699;
-			int YAdd                  = 60134478;
-			int YMod                  = 78767213;
-			int expected__            = 143010383;
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int N                     = 4;
+            int X0                    = 3;
+            int XMul                  = 3;
+            int XAdd                  = 3;
+            int XMod                  = 10;
+            int Y0                    = 0;
+            int YMul                  = 3;
+            int YAdd                  = 2;
+            int YMod                  = 7;
+            int expected__            = 3;
 
-			return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
-		}
+            return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
+        }
+        case 1: {
+            int N                     = 5;
+            int X0                    = 1;
+            int XMul                  = 5;
+            int XAdd                  = 6;
+            int XMod                  = 8;
+            int Y0                    = 5;
+            int YMul                  = 5;
+            int YAdd                  = 3;
+            int YMod                  = 9;
+            int expected__            = 5;
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
+        }
+        case 2: {
+            int N                     = 5;
+            int X0                    = 4;
+            int XMul                  = 1;
+            int XAdd                  = 1;
+            int XMod                  = 8;
+            int Y0                    = 5;
+            int YMul                  = 4;
+            int YAdd                  = 4;
+            int YMod                  = 6;
+            int expected__            = 0;
+
+            return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
+        }
+        case 3: {
+            int N                     = 99;
+            int X0                    = 9461448;
+            int XMul                  = 38301228;
+            int XAdd                  = 33476602;
+            int XMod                  = 42996440;
+            int Y0                    = 10502745;
+            int YMul                  = 35649230;
+            int YAdd                  = 12271470;
+            int YMod                  = 65500929;
+            int expected__            = 181248946;
+
+            return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
+        }
+        case 4: {
+            int N                     = 2000;
+            int X0                    = 6927240;
+            int XMul                  = 2020343;
+            int XAdd                  = 10323527;
+            int XMod                  = 10690663;
+            int Y0                    = 28749177;
+            int YMul                  = 29744699;
+            int YAdd                  = 60134478;
+            int YMod                  = 78767213;
+            int expected__            = 143010383;
+
+            return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
+        }
+
+        // custom cases
 
       case 5: {
-			int N                     = 10;
-			int X0                    = 13;
-			int XMul                  = 5;
-			int XAdd                  = 13;
-			int XMod                  = 19;
-			int Y0                    = 6;
-			int YMul                  = 1;
-			int YAdd                  = 4;
-			int YMod                  = 7;
-			int expected__            = 128;
+            int N                     = 10;
+            int X0                    = 13;
+            int XMul                  = 5;
+            int XAdd                  = 13;
+            int XMod                  = 19;
+            int Y0                    = 6;
+            int YMul                  = 1;
+            int YAdd                  = 4;
+            int YMod                  = 7;
+            int expected__            = 128;
 
-			return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
-		}
+            return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
+        }
 /*      case 6: {
-			int N                     = ;
-			int X0                    = ;
-			int XMul                  = ;
-			int XAdd                  = ;
-			int XMod                  = ;
-			int Y0                    = ;
-			int YMul                  = ;
-			int YAdd                  = ;
-			int YMod                  = ;
-			int expected__            = ;
+            int N                     = ;
+            int X0                    = ;
+            int XMul                  = ;
+            int XAdd                  = ;
+            int XMod                  = ;
+            int Y0                    = ;
+            int YMul                  = ;
+            int YAdd                  = ;
+            int YMod                  = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
-		}*/
+            return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
+        }*/
 /*      case 7: {
-			int N                     = ;
-			int X0                    = ;
-			int XMul                  = ;
-			int XAdd                  = ;
-			int XMod                  = ;
-			int Y0                    = ;
-			int YMul                  = ;
-			int YAdd                  = ;
-			int YMod                  = ;
-			int expected__            = ;
+            int N                     = ;
+            int X0                    = ;
+            int XMul                  = ;
+            int XAdd                  = ;
+            int XMod                  = ;
+            int Y0                    = ;
+            int YMul                  = ;
+            int YAdd                  = ;
+            int YMod                  = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new PQHulls().countSubsets(N, X0, XMul, XAdd, XMod, Y0, YMul, YAdd, YMod));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

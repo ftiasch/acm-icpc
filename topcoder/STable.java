@@ -113,144 +113,144 @@ public class STable {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			STableHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				STableHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            STableHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                STableHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class STableHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(String expected, String result) { return expected.equals(result); }
-	static String formatResult(String res) {
-		return String.format("\"%s\"", res);
-	}
-	
-	static int verifyCase(int casenum, String expected, String received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String s                  = "ad";
-			String t                  = "cb";
-			long pos                  = 0;
-			String expected__         = "acbacd";
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
-		}
-		case 1: {
-			String s                  = "fox";
-			String t                  = "cat";
-			long pos                  = 0;
-			String expected__         = "acfcfoacftacfcfocfox";
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
-		}
-		case 2: {
-			String s                  = "Ra6b1t";
-			String t                  = "W0lf";
-			long pos                  = 66;
-			String expected__         = "RWab0RWRWa0RWl0RWRWa6RWa0RWRWa6RWa6RWab0RWRWa6RWa6";
+    static boolean compareOutput(String expected, String result) { return expected.equals(result); }
+    static String formatResult(String res) {
+        return String.format("\"%s\"", res);
+    }
 
-			return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
-		}
-		case 3: {
-			String s                  = "M0HAXG";
-			String t                  = "COFU12";
-			long pos                  = 919;
-			String expected__         = "MOFU2";
+    static int verifyCase(int casenum, String expected, String received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
-		}
-		case 4: {
-			String s                  = "a0B1c2D3e4F5gHiJkLmN";
-			String t                  = "A9b8C7d6EfGhIjKlMn";
-			long pos                  = 9876543210L;
-			String expected__         = "B10AaB1c0Aa9Aa0AaB0AaB10AaB1c0AaB1c20Aa9Aa0AaB0Aa9";
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String s                  = "ad";
+            String t                  = "cb";
+            long pos                  = 0;
+            String expected__         = "acbacd";
 
-			return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
-		}
-		case 5: {
-			String s                  = "TCOR2";
-			String t                  = "MEDiUm";
-			long pos                  = 350;
-			String expected__         = "MTDEMTiCMTEMTDEMTDEMTiDEMTiUCMTEMTCMTOCMTEMTDEMTCM";
+            return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
+        }
+        case 1: {
+            String s                  = "fox";
+            String t                  = "cat";
+            long pos                  = 0;
+            String expected__         = "acfcfoacftacfcfocfox";
 
-			return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
-		}
+            return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
+        }
+        case 2: {
+            String s                  = "Ra6b1t";
+            String t                  = "W0lf";
+            long pos                  = 66;
+            String expected__         = "RWab0RWRWa0RWl0RWRWa6RWa0RWRWa6RWa6RWab0RWRWa6RWa6";
 
-		// custom cases
+            return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
+        }
+        case 3: {
+            String s                  = "M0HAXG";
+            String t                  = "COFU12";
+            long pos                  = 919;
+            String expected__         = "MOFU2";
+
+            return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
+        }
+        case 4: {
+            String s                  = "a0B1c2D3e4F5gHiJkLmN";
+            String t                  = "A9b8C7d6EfGhIjKlMn";
+            long pos                  = 9876543210L;
+            String expected__         = "B10AaB1c0Aa9Aa0AaB0AaB10AaB1c0AaB1c20Aa9Aa0AaB0Aa9";
+
+            return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
+        }
+        case 5: {
+            String s                  = "TCOR2";
+            String t                  = "MEDiUm";
+            long pos                  = 350;
+            String expected__         = "MTDEMTiCMTEMTDEMTDEMTiDEMTiUCMTEMTCMTOCMTEMTDEMTCM";
+
+            return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
+        }
+
+        // custom cases
 
 /*      case 6: {
-			String s                  = ;
-			String t                  = ;
-			long pos                  = ;
-			String expected__         = ;
+            String s                  = ;
+            String t                  = ;
+            long pos                  = ;
+            String expected__         = ;
 
-			return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
-		}*/
+            return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
+        }*/
 /*      case 7: {
-			String s                  = ;
-			String t                  = ;
-			long pos                  = ;
-			String expected__         = ;
+            String s                  = ;
+            String t                  = ;
+            long pos                  = ;
+            String expected__         = ;
 
-			return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
-		}*/
+            return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
+        }*/
 /*      case 8: {
-			String s                  = ;
-			String t                  = ;
-			long pos                  = ;
-			String expected__         = ;
+            String s                  = ;
+            String t                  = ;
+            long pos                  = ;
+            String expected__         = ;
 
-			return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new STable().getString(s, t, pos));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

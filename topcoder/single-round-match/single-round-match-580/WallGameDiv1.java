@@ -65,89 +65,89 @@ public class WallGameDiv1 {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			WallGameDiv1Harness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				WallGameDiv1Harness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            WallGameDiv1Harness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                WallGameDiv1Harness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class WallGameDiv1Harness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String[] costs            = {"12"
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
+
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
+
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
+
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
+
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String[] costs            = {"12"
 ,"34"};
-			int expected__            = 6;
+            int expected__            = 6;
 
-			return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
-		}
-		case 1: {
-			String[] costs            = {"99999"
+            return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
+        }
+        case 1: {
+            String[] costs            = {"99999"
 ,"99999"
 ,"99999"};
-			int expected__            = 99;
+            int expected__            = 99;
 
-			return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
-		}
-		case 2: {
-			String[] costs            = {"11111"
+            return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
+        }
+        case 2: {
+            String[] costs            = {"11111"
 ,"90005"};
-			int expected__            = 10;
+            int expected__            = 10;
 
-			return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
-		}
-		case 3: {
-			String[] costs            = {"4417231387449337370319219832088987579792"
+            return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
+        }
+        case 3: {
+            String[] costs            = {"4417231387449337370319219832088987579792"
 ,"3117295688208899006196193430472892512797"
 ,"0835796222361526836944954410684516919758"
 ,"1988200069973565052900745230547016216225"
@@ -187,35 +187,35 @@ class WallGameDiv1Harness {
 ,"2193399741215975228987754171460722199304"
 ,"1203037020703833716225328076959743850915"
 ,"5419885193880826109484912489603262199432"};
-			int expected__            = 7366;
+            int expected__            = 7366;
 
-			return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
-		}
+            return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
+        }
 
-		// custom cases
+        // custom cases
 
 /*      case 4: {
-			String[] costs            = ;
-			int expected__            = ;
+            String[] costs            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
-		}*/
+            return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
+        }*/
 /*      case 5: {
-			String[] costs            = ;
-			int expected__            = ;
+            String[] costs            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
-		}*/
+            return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
+        }*/
 /*      case 6: {
-			String[] costs            = ;
-			int expected__            = ;
+            String[] costs            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new WallGameDiv1().play(costs));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

@@ -93,89 +93,89 @@ public class EllysLights {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			EllysLightsHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				EllysLightsHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            EllysLightsHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                EllysLightsHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class EllysLightsHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String initial            = "YNYNNN";
-			String[] switches         = {"YNNYNY", "NYYYNN", "YNYNYN", "NNNNYN", "NYNNNY"};
-			int expected__            = 2;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
-		}
-		case 1: {
-			String initial            = "YNYNYN";
-			String[] switches         = {"NNNNNN", "YYYYYY", "NYNNNN", "NNNYNN", "NNNNNY"};
-			int expected__            = 4;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
-		}
-		case 2: {
-			String initial            = "YYN";
-			String[] switches         = {"YNY", "NYN"};
-			int expected__            = -1;
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
-		}
-		case 3: {
-			String initial            = "NNYNYNYYYNNYYYYN";
-			String[] switches         = {"NYNYNYNYNYNYNYNY",
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
+
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String initial            = "YNYNNN";
+            String[] switches         = {"YNNYNY", "NYYYNN", "YNYNYN", "NNNNYN", "NYNNNY"};
+            int expected__            = 2;
+
+            return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
+        }
+        case 1: {
+            String initial            = "YNYNYN";
+            String[] switches         = {"NNNNNN", "YYYYYY", "NYNNNN", "NNNYNN", "NNNNNY"};
+            int expected__            = 4;
+
+            return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
+        }
+        case 2: {
+            String initial            = "YYN";
+            String[] switches         = {"YNY", "NYN"};
+            int expected__            = -1;
+
+            return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
+        }
+        case 3: {
+            String initial            = "NNYNYNYYYNNYYYYN";
+            String[] switches         = {"NYNYNYNYNYNYNYNY",
  "YNYNYNYNYNYNYNYN",
  "NNNNNNNNNNNNNNNN",
  "YNNNNNNNNNNNNNNN",
@@ -194,13 +194,13 @@ class EllysLightsHarness {
  "NNNNNNNNNNNNNYNN",
  "NNNNNNNNNNNNNNYN",
  "NNNNNNNNNNNNNNNY"};
-			int expected__            = 6;
+            int expected__            = 6;
 
-			return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
-		}
-		case 4: {
-			String initial            = "NYNYNYYYNNYYYNNYNNYYYYYNNYNYYYY";
-			String[] switches         = {"NNNNNNNNNNNNNNNNNNYNNNNNNNNNNNN",
+            return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
+        }
+        case 4: {
+            String initial            = "NYNYNYYYNNYYYNNYNNYYYYYNNYNYYYY";
+            String[] switches         = {"NNNNNNNNNNNNNNNNNNYNNNNNNNNNNNN",
  "NNNNNNNNYNNNYNNNNYYNYNNNNYNNNNN",
  "NNNNNNNNNYNNNNNNNNNNNNYNNNNNNNN",
  "NNNNNYNNNNNNNNNNNNNNNNNNNNNNNNN",
@@ -221,13 +221,13 @@ class EllysLightsHarness {
  "NNNNNNNNNNYNNNNNNNNNNNNNNNNNNNN",
  "NNNNYNNYNNNNNNNNNNNNNNNNNNNNNNN",
  "NNNNNNNYNNNYNNNYNNNNNNNNNNNNNYN"};
-			int expected__            = 7;
+            int expected__            = 7;
 
-			return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
-		}
-		case 5: {
-			String initial            = "NYNYYNYNYYYYNNYNYNNYYNNNNNYNYNNNNNYNNNYN";
-			String[] switches         = {"NNNNNNNNNNNNNNNNNNNYNNNNNNNNNNNNNNNYNNNN",
+            return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
+        }
+        case 5: {
+            String initial            = "NYNYYNYNYYYYNNYNYNNYYNNNNNYNYNNNNNYNNNYN";
+            String[] switches         = {"NNNNNNNNNNNNNNNNNNNYNNNNNNNNNNNNNNNYNNNN",
  "NNNNNNNNNNNNNNNNNNNNNNNNNNYNNNNNNNNNNNNN",
  "NNNNNNNNNYNNNNYNNYNNNNNNNNNNNNNNNNNNNNNN",
  "NNNNNNNNNNNNNNNNNNNYNNNNYNNNNNNNYNNNNNNN",
@@ -258,38 +258,38 @@ class EllysLightsHarness {
  "NNNYNNNNNNNNNNNNNNNNYYNNNNNNNNNNNNNNNNNN",
  "NNNNNNNNYNNNNNNNNNNNNNNNNNNNYNYNNNNNNNNN",
  "NNNNNNNNNNNNNNNNNNNNNNNNNNYNNYNNNNNNYNNN"};
-			int expected__            = -1;
+            int expected__            = -1;
 
-			return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
-		}
+            return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
+        }
 
-		// custom cases
+        // custom cases
 
 /*      case 6: {
-			String initial            = ;
-			String[] switches         = ;
-			int expected__            = ;
+            String initial            = ;
+            String[] switches         = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
-		}*/
+            return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
+        }*/
 /*      case 7: {
-			String initial            = ;
-			String[] switches         = ;
-			int expected__            = ;
+            String initial            = ;
+            String[] switches         = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
-		}*/
+            return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
+        }*/
 /*      case 8: {
-			String initial            = ;
-			String[] switches         = ;
-			int expected__            = ;
+            String initial            = ;
+            String[] switches         = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new EllysLights().getMinimum(initial, switches));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

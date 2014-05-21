@@ -37,85 +37,85 @@ public class ColorfulWolves {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			ColorfulWolvesHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				ColorfulWolvesHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            ColorfulWolvesHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                ColorfulWolvesHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class ColorfulWolvesHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String[] colormap         = {"NYN","YNY","NNN"};
-			int expected__            = 1;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
-		}
-		case 1: {
-			String[] colormap         = {"NNNNNNNY","NNNNYYYY","YNNNNYYN","NNNNNYYY","YYYNNNNN","YNYNYNYN","NYNYNYNY","YYYYYYYN"};
-			int expected__            = 0;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
-		}
-		case 2: {
-			String[] colormap         = {"NYYYYN","YNYYYN","YYNYYN","YYYNYN","YYYYNN","YYYYYN"};
-			int expected__            = -1;
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
-		}
-		case 3: {
-			String[] colormap         = {
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
+
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String[] colormap         = {"NYN","YNY","NNN"};
+            int expected__            = 1;
+
+            return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
+        }
+        case 1: {
+            String[] colormap         = {"NNNNNNNY","NNNNYYYY","YNNNNYYN","NNNNNYYY","YYYNNNNN","YNYNYNYN","NYNYNYNY","YYYYYYYN"};
+            int expected__            = 0;
+
+            return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
+        }
+        case 2: {
+            String[] colormap         = {"NYYYYN","YNYYYN","YYNYYN","YYYNYN","YYYYNN","YYYYYN"};
+            int expected__            = -1;
+
+            return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
+        }
+        case 3: {
+            String[] colormap         = {
 "NYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
 "YNYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
 "YYNYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
@@ -167,12 +167,12 @@ class ColorfulWolvesHarness {
 "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYNY",
 "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYN"
 };
-			int expected__            = 48;
+            int expected__            = 48;
 
-			return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
-		}
-		case 4: {
-			String[] colormap         = {
+            return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
+        }
+        case 4: {
+            String[] colormap         = {
 "NYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
 "YNYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY",
 "YYNYYYYYYYYYNNNNNYYYYYYNNNNNYYYYYNNYYYNNYYYYYYYYYY",
@@ -224,35 +224,35 @@ class ColorfulWolvesHarness {
 "YYYYNNNNYYYYNNNNNNNNNNNNYYYYYNNNNNNNNNYYYYYYYYYYNY",
 "YYYYYYNYYYYYYYYYYYYYYNYYYYYYYYYYYYYYYYYYYYYNYYYYYN"
 };
-			int expected__            = 35;
+            int expected__            = 35;
 
-			return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
-		}
+            return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
+        }
 
-		// custom cases
+        // custom cases
 
 /*      case 5: {
-			String[] colormap         = ;
-			int expected__            = ;
+            String[] colormap         = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
-		}*/
+            return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
+        }*/
 /*      case 6: {
-			String[] colormap         = ;
-			int expected__            = ;
+            String[] colormap         = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
-		}*/
+            return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
+        }*/
 /*      case 7: {
-			String[] colormap         = ;
-			int expected__            = ;
+            String[] colormap         = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new ColorfulWolves().getmin(colormap));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

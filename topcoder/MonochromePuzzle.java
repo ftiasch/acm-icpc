@@ -42,8 +42,8 @@ public class MonochromePuzzle {
         mapping[1] = next;
         for (int i = 3; i < n; ++ i) {
             int v = 0;
-            while (v < n && (visit[v] 
-                        || !graph[mapping[order[i - 2]]][v] 
+            while (v < n && (visit[v]
+                        || !graph[mapping[order[i - 2]]][v]
                         || ((i & 1) == 1 && !graph[mapping[order[i - 1]]][v]))) {
                 v ++;
             }
@@ -67,8 +67,8 @@ public class MonochromePuzzle {
                 }
             }
         }
-        newGraph[mapping[0]][mapping[(n >> 1) - 1]] = 
-        newGraph[mapping[(n >> 1) - 1]][mapping[0]] = 
+        newGraph[mapping[0]][mapping[(n >> 1) - 1]] =
+        newGraph[mapping[(n >> 1) - 1]][mapping[0]] =
         newGraph[mapping[n >> 1]][mapping[n - 1]] =
         newGraph[mapping[n - 1]][mapping[n >> 1]] = true;
         for (int i = 0; i < n; ++ i) {
@@ -95,89 +95,89 @@ public class MonochromePuzzle {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			MonochromePuzzleHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				MonochromePuzzleHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            MonochromePuzzleHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                MonochromePuzzleHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class MonochromePuzzleHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String[] board            = {".##.#."
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
+
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
+
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
+
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
+
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String[] board            = {".##.#."
 ,"#.##.."
 ,"##...#"
 ,".#..##"
 ,"#..#.#"
 ,"..###."};
-			int expected__            = 2;
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
-		}
-		case 1: {
-			String[] board            = {"###..."
+            return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
+        }
+        case 1: {
+            String[] board            = {"###..."
 ,".##..."
 ,"..#..."
 ,"#..###"
 ,"##..##"
 ,"###..#"};
-			int expected__            = -1;
+            int expected__            = -1;
 
-			return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
-		}
-		case 2: {
-			String[] board            = {".#.#...#"
+            return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
+        }
+        case 2: {
+            String[] board            = {".#.#...#"
 ,"#.#...#."
 ,".#.#.#.."
 ,"#.#.#..."
@@ -185,12 +185,12 @@ class MonochromePuzzleHarness {
 ,"..#.#.#."
 ,".#...#.#"
 ,"#...#.#."};
-			int expected__            = 0;
+            int expected__            = 0;
 
-			return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
-		}
-		case 3: {
-			String[] board            = {".#..#....#"
+            return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
+        }
+        case 3: {
+            String[] board            = {".#..#....#"
 ,"#....#..#."
 ,"....###..."
 ,"....#.#..#"
@@ -201,12 +201,12 @@ class MonochromePuzzleHarness {
 ,".#.....#.#"
 ,"#..#....#."}
 ;
-			int expected__            = 2;
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
-		}
-		case 4: {
-			String[] board            = {".##.....#."
+            return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
+        }
+        case 4: {
+            String[] board            = {".##.....#."
 ,"#..#.....#"
 ,"#..##....."
 ,".##..#...."
@@ -216,12 +216,12 @@ class MonochromePuzzleHarness {
 ,".....##..#"
 ,"#.....#..#"
 ,".#.....##."};
-			int expected__            = 5;
+            int expected__            = 5;
 
-			return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
-		}
-		case 5: {
-			String[] board            = {".......##.#."
+            return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
+        }
+        case 5: {
+            String[] board            = {".......##.#."
 ,"......#..#.#"
 ,"......#..##."
 ,".......##..#"
@@ -233,35 +233,35 @@ class MonochromePuzzleHarness {
 ,".##..#......"
 ,"#.#..#......"
 ,".#.##......."};
-			int expected__            = 5;
+            int expected__            = 5;
 
-			return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
-		}
+            return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
+        }
 
-		// custom cases
+        // custom cases
 
 /*      case 6: {
-			String[] board            = ;
-			int expected__            = ;
+            String[] board            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
-		}*/
+            return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
+        }*/
 /*      case 7: {
-			String[] board            = ;
-			int expected__            = ;
+            String[] board            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
-		}*/
+            return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
+        }*/
 /*      case 8: {
-			String[] board            = ;
-			int expected__            = ;
+            String[] board            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new MonochromePuzzle().getMinimum(board));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

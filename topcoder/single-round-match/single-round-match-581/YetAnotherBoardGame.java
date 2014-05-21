@@ -4,7 +4,7 @@ import java.math.*;
 public class YetAnotherBoardGame {
     int n, m, all;
     int[] board;
-    
+
     int solve(int type, int first) {
         int answer = 0;
         int pre = 0;
@@ -25,7 +25,7 @@ public class YetAnotherBoardGame {
         return answer;
     }
 
-    public int minimumMoves(String[] boardString) {		
+    public int minimumMoves(String[] boardString) {
         n = boardString.length;
         m = boardString[0].length();
         board = new int[n];
@@ -53,111 +53,111 @@ public class YetAnotherBoardGame {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			YetAnotherBoardGameHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				YetAnotherBoardGameHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            YetAnotherBoardGameHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                YetAnotherBoardGameHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class YetAnotherBoardGameHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String[] board            = {"BBBBBBBBB",
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
+
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
+
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
+
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
+
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String[] board            = {"BBBBBBBBB",
  "BBWBBBBBB",
  "BWWWBBBBB",
  "BBWBBBWBB",
  "BBBBBWBWB",
  "BBBBBBWBB"};
-			int expected__            = 2;
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
-		}
-		case 1: {
-			String[] board            = {"BBW",
+            return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
+        }
+        case 1: {
+            String[] board            = {"BBW",
  "WWW",
  "BWW"};
-			int expected__            = 2;
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
-		}
-		case 2: {
-			String[] board            = {"WBW",
+            return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
+        }
+        case 2: {
+            String[] board            = {"WBW",
  "BBW",
  "WBW"};
-			int expected__            = 4;
+            int expected__            = 4;
 
-			return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
-		}
-		case 3: {
-			String[] board            = {"BBBB",
+            return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
+        }
+        case 3: {
+            String[] board            = {"BBBB",
  "WBWB",
  "BBBB",
  "BBBB"};
-			int expected__            = -1;
+            int expected__            = -1;
 
-			return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
-		}
-		case 4: {
-			String[] board            = {"WWWWWBW",
+            return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
+        }
+        case 4: {
+            String[] board            = {"WWWWWBW",
  "WBWBWBW",
  "BBWBBWW"};
-			int expected__            = 7;
+            int expected__            = 7;
 
-			return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
-		}
-		case 5: {
-			String[] board            = {"WWWWWWWWWW",
+            return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
+        }
+        case 5: {
+            String[] board            = {"WWWWWWWWWW",
  "WWWWWWWWWW",
  "WWWWWWWWWW",
  "WWWWWWWWWW",
@@ -168,35 +168,35 @@ class YetAnotherBoardGameHarness {
  "WWWWWWWWWW",
  "WWWWWWWWWW"}
 ;
-			int expected__            = 30;
+            int expected__            = 30;
 
-			return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
-		}
+            return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
+        }
 
-		// custom cases
+        // custom cases
 
 /*      case 6: {
-			String[] board            = ;
-			int expected__            = ;
+            String[] board            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
-		}*/
+            return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
+        }*/
 /*      case 7: {
-			String[] board            = ;
-			int expected__            = ;
+            String[] board            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
-		}*/
+            return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
+        }*/
 /*      case 8: {
-			String[] board            = ;
-			int expected__            = ;
+            String[] board            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new YetAnotherBoardGame().minimumMoves(board));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

@@ -56,119 +56,119 @@ public class Rumor {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			RumorHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				RumorHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            RumorHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                RumorHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class RumorHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String knowledge          = "YNN";
-			String[] graph            = {"NYN"
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
+
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
+
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
+
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
+
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String knowledge          = "YNN";
+            String[] graph            = {"NYN"
 ,"NNY"
 ,"NNN"};
-			int expected__            = 3;
+            int expected__            = 3;
 
-			return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
-		}
-		case 1: {
-			String knowledge          = "YNNY";
-			String[] graph            = {"NYYN"
+            return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
+        }
+        case 1: {
+            String knowledge          = "YNNY";
+            String[] graph            = {"NYYN"
 ,"YNNY"
 ,"YNNY"
 ,"NYYN"};
-			int expected__            = 1;
+            int expected__            = 1;
 
-			return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
-		}
-		case 2: {
-			String knowledge          = "YYYY";
-			String[] graph            = {"NYNN"
+            return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
+        }
+        case 2: {
+            String knowledge          = "YYYY";
+            String[] graph            = {"NYNN"
 ,"YNYN"
 ,"NYNY"
 ,"NNYN"};
-			int expected__            = 0;
+            int expected__            = 0;
 
-			return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
-		}
-		case 3: {
-			String knowledge          = "YYYYYN";
-			String[] graph            = {"NYYYYN"
+            return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
+        }
+        case 3: {
+            String knowledge          = "YYYYYN";
+            String[] graph            = {"NYYYYN"
 ,"YNYYYN"
 ,"YYNYYN"
 ,"YYYNYN"
 ,"YYYYNN"
 ,"NNNNNN"};
-			int expected__            = -1;
+            int expected__            = -1;
 
-			return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
-		}
-		case 4: {
-			String knowledge          = "NNNY";
-			String[] graph            = {"NNNN"
+            return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
+        }
+        case 4: {
+            String knowledge          = "NNNY";
+            String[] graph            = {"NNNN"
 ,"YNNN"
 ,"YNNN"
 ,"NYYN"};
-			int expected__            = 3;
+            int expected__            = 3;
 
-			return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
-		}
-		case 5: {
-			String knowledge          =  "NNNNNNNYYY";
-			String[] graph            = {"NYNNYNNYNN"
+            return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
+        }
+        case 5: {
+            String knowledge          =  "NNNNNNNYYY";
+            String[] graph            = {"NYNNYNNYNN"
 ,"NNYNYNNNNY"
 ,"YYNNNYNNNN"
 ,"YNNNYNYNNN"
@@ -179,38 +179,38 @@ class RumorHarness {
 ,"NNNYNNNYNY"
 ,"NYYNNNNYNN"}
 ;
-			int expected__            = 2;
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
-		}
+            return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
+        }
 
-		// custom cases
+        // custom cases
 
 /*      case 6: {
-			String knowledge          = ;
-			String[] graph            = ;
-			int expected__            = ;
+            String knowledge          = ;
+            String[] graph            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
-		}*/
+            return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
+        }*/
 /*      case 7: {
-			String knowledge          = ;
-			String[] graph            = ;
-			int expected__            = ;
+            String knowledge          = ;
+            String[] graph            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
-		}*/
+            return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
+        }*/
 /*      case 8: {
-			String knowledge          = ;
-			String[] graph            = ;
-			int expected__            = ;
+            String knowledge          = ;
+            String[] graph            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new Rumor().getMinimum(knowledge, graph));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

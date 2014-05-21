@@ -75,120 +75,120 @@ public class TravellingPurchasingMan {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			TravellingPurchasingManHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				TravellingPurchasingManHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            TravellingPurchasingManHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                TravellingPurchasingManHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class TravellingPurchasingManHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			int N                     = 3;
-			String[] interestingStores = {"1 10 10" , "1 55 31", "10 50 100" };
-			String[] roads            = {"1 2 10"};
-			int expected__            = 1;
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
 
-			return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
-		}
-		case 1: {
-			int N                     = 3;
-			String[] interestingStores = {"1 10 10" , "1 55 30", "10 50 100" };
-			String[] roads            = {"1 2 10"};
-			int expected__            = 2;
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
 
-			return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
-		}
-		case 2: {
-			int N                     = 5;
-			String[] interestingStores = {"0 1000 17"};
-			String[] roads            = {"2 3 400", "4 1 500", "4 3 300", "1 0 700", "0 2 400"};
-			int expected__            = 0;
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
 
-			return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
-		}
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
 
-		// custom cases
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            int N                     = 3;
+            String[] interestingStores = {"1 10 10" , "1 55 31", "10 50 100" };
+            String[] roads            = {"1 2 10"};
+            int expected__            = 1;
+
+            return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
+        }
+        case 1: {
+            int N                     = 3;
+            String[] interestingStores = {"1 10 10" , "1 55 30", "10 50 100" };
+            String[] roads            = {"1 2 10"};
+            int expected__            = 2;
+
+            return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
+        }
+        case 2: {
+            int N                     = 5;
+            String[] interestingStores = {"0 1000 17"};
+            String[] roads            = {"2 3 400", "4 1 500", "4 3 300", "1 0 700", "0 2 400"};
+            int expected__            = 0;
+
+            return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
+        }
+
+        // custom cases
 
 /*      case 3: {
-			int N                     = ;
-			String[] interestingStores = ;
-			String[] roads            = ;
-			int expected__            = ;
+            int N                     = ;
+            String[] interestingStores = ;
+            String[] roads            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
-		}*/
+            return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
+        }*/
 /*      case 4: {
-			int N                     = ;
-			String[] interestingStores = ;
-			String[] roads            = ;
-			int expected__            = ;
+            int N                     = ;
+            String[] interestingStores = ;
+            String[] roads            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
-		}*/
+            return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
+        }*/
 /*      case 5: {
-			int N                     = ;
-			String[] interestingStores = ;
-			String[] roads            = ;
-			int expected__            = ;
+            int N                     = ;
+            String[] interestingStores = ;
+            String[] roads            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new TravellingPurchasingMan().maxStores(N, interestingStores, roads));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

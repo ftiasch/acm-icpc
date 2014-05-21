@@ -43,7 +43,7 @@ public class Tunnels {
                             if (y == m - 1) {
                                 type[1][x] = 2;
                             }
-                        } 
+                        }
                     }
                 }
             }
@@ -83,7 +83,7 @@ public class Tunnels {
                                         add ++;
                                         newRight --;
                                     }
-                                } 
+                                }
                                 if (type[1][i] == 2 || type[1][i] == 3 && t == 0) {
                                     newRight ++;
                                 }
@@ -136,104 +136,104 @@ public class Tunnels {
 
 // BEGIN CUT HERE
     public static void main(String[] args) {
-		if (args.length == 0) {
-			TunnelsHarness.run_test(-1);
-		} else {
-			for (int i=0; i<args.length; ++i)
-				TunnelsHarness.run_test(Integer.valueOf(args[i]));
-		}
-	}
+        if (args.length == 0) {
+            TunnelsHarness.run_test(-1);
+        } else {
+            for (int i=0; i<args.length; ++i)
+                TunnelsHarness.run_test(Integer.valueOf(args[i]));
+        }
+    }
 // END CUT HERE
 }
 
 // BEGIN CUT HERE
 class TunnelsHarness {
-	public static void run_test(int casenum) {
-		if (casenum != -1) {
-			if (runTestCase(casenum) == -1)
-				System.err.println("Illegal input! Test case " + casenum + " does not exist.");
-			return;
-		}
-		
-		int correct = 0, total = 0;
-		for (int i=0;; ++i) {
-			int x = runTestCase(i);
-			if (x == -1) {
-				if (i >= 100) break;
-				continue;
-			}
-			correct += x;
-			++total;
-		}
-		
-		if (total == 0) {
-			System.err.println("No test cases run.");
-		} else if (correct < total) {
-			System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
-		} else {
-			System.err.println("All " + total + " tests passed!");
-		}
-	}
-	
-	static boolean compareOutput(int expected, int result) { return expected == result; }
-	static String formatResult(int res) {
-		return String.format("%d", res);
-	}
-	
-	static int verifyCase(int casenum, int expected, int received) { 
-		System.err.print("Example " + casenum + "... ");
-		if (compareOutput(expected, received)) {
-			System.err.println("PASSED");
-			return 1;
-		} else {
-			System.err.println("FAILED");
-			System.err.println("    Expected: " + formatResult(expected)); 
-			System.err.println("    Received: " + formatResult(received)); 
-			return 0;
-		}
-	}
+    public static void run_test(int casenum) {
+        if (casenum != -1) {
+            if (runTestCase(casenum) == -1)
+                System.err.println("Illegal input! Test case " + casenum + " does not exist.");
+            return;
+        }
 
-	static int runTestCase(int casenum__) {
-		switch(casenum__) {
-		case 0: {
-			String[] frame            = {"XXX.XXXX.....X",
+        int correct = 0, total = 0;
+        for (int i=0;; ++i) {
+            int x = runTestCase(i);
+            if (x == -1) {
+                if (i >= 100) break;
+                continue;
+            }
+            correct += x;
+            ++total;
+        }
+
+        if (total == 0) {
+            System.err.println("No test cases run.");
+        } else if (correct < total) {
+            System.err.println("Some cases FAILED (passed " + correct + " of " + total + ").");
+        } else {
+            System.err.println("All " + total + " tests passed!");
+        }
+    }
+
+    static boolean compareOutput(int expected, int result) { return expected == result; }
+    static String formatResult(int res) {
+        return String.format("%d", res);
+    }
+
+    static int verifyCase(int casenum, int expected, int received) {
+        System.err.print("Example " + casenum + "... ");
+        if (compareOutput(expected, received)) {
+            System.err.println("PASSED");
+            return 1;
+        } else {
+            System.err.println("FAILED");
+            System.err.println("    Expected: " + formatResult(expected));
+            System.err.println("    Received: " + formatResult(received));
+            return 0;
+        }
+    }
+
+    static int runTestCase(int casenum__) {
+        switch(casenum__) {
+        case 0: {
+            String[] frame            = {"XXX.XXXX.....X",
                                          "..X....XXX...X",
                                          "XXX......X...."};
-			int expected__            = 3;
+            int expected__            = 3;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}
-		case 1: {
-			String[] frame            = {".......X.....",
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }
+        case 1: {
+            String[] frame            = {".......X.....",
  ".............",
  "XXX.XXXXXXXXX"};
-			int expected__            = 3;
+            int expected__            = 3;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}
-		case 2: {
-			String[] frame            = {".............",
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }
+        case 2: {
+            String[] frame            = {".............",
  "XXXXXXXXXXXXX",
  ".............",
  "XXX.......XXX",
  "..........X..",
  "..........XXX"};
-			int expected__            = 2;
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}
-		case 3: {
-			String[] frame            = {"XXXX...X..",
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }
+        case 3: {
+            String[] frame            = {"XXXX...X..",
                                          "....XXXX.X",
                                          "XX.......X",
                                          "..........",
                                          "....XXXXXX"};
-			int expected__            = 4;
+            int expected__            = 4;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}
-		case 4: {
-			String[] frame            = {"X........X..",
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }
+        case 4: {
+            String[] frame            = {"X........X..",
  ".........XXX",
  "............",
  "XXXXXXXXXXXX",
@@ -242,12 +242,12 @@ class TunnelsHarness {
  "............",
  ".........XXX",
  "..XXXXXXXX.."};
-			int expected__            = 2;
+            int expected__            = 2;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}
-		case 5: {
-			String[] frame            = {"...............X.X....X",
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }
+        case 5: {
+            String[] frame            = {"...............X.X....X",
  "XXXXX..........X.......",
  "....X..................",
  "XXX.X.........XXXXXXXXX",
@@ -255,62 +255,62 @@ class TunnelsHarness {
  "XXX.X.........XXXXXXXXX",
  "....X..................",
  "XXXXX......XXXXXXXXXXXX"};
-			int expected__            = 5;
+            int expected__            = 5;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}
-		case 6: {
-			String[] frame            = {".",
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }
+        case 6: {
+            String[] frame            = {".",
  "X",
  "X",
  ".",
  "X"};
-			int expected__            = 1;
+            int expected__            = 1;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}
-		case 7: {
-			String[] frame            = {"X.XX",
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }
+        case 7: {
+            String[] frame            = {"X.XX",
  "X...",
  "...X",
  "X...",
  "X..X"};
-			int expected__            = 3;
+            int expected__            = 3;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}
-		case 8: {
-			String[] frame            = {"...",
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }
+        case 8: {
+            String[] frame            = {"...",
  "..."};
-			int expected__            = 0;
+            int expected__            = 0;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }
 
-		// custom cases
+        // custom cases
 
 /*      case 9: {
-			String[] frame            = ;
-			int expected__            = ;
+            String[] frame            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}*/
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }*/
 /*      case 10: {
-			String[] frame            = ;
-			int expected__            = ;
+            String[] frame            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}*/
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }*/
 /*      case 11: {
-			String[] frame            = ;
-			int expected__            = ;
+            String[] frame            = ;
+            int expected__            = ;
 
-			return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
-		}*/
-		default:
-			return -1;
-		}
-	}
+            return verifyCase(casenum__, expected__, new Tunnels().minimumTunnels(frame));
+        }*/
+        default:
+            return -1;
+        }
+    }
 }
 
 // END CUT HERE

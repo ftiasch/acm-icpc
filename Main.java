@@ -4,10 +4,6 @@ import java.util.*;
 
 public class Main {
     public void run() {
-        try {
-            // main
-        } catch (IOException ex) {
-        }
         writer.close();
     }
 
@@ -20,7 +16,7 @@ public class Main {
         new Main().run();
     }
 
-    private void debug(Object...os) {
+    private static void debug(Object...os) {
         System.err.println(Arrays.deepToString(os));
     }
 
@@ -29,22 +25,51 @@ public class Main {
 }
 
 class InputReader {
-    InputReader(InputStream in) {
-        reader    = new BufferedReader(new InputStreamReader(in));
-        tokenizer = new StringTokenizer("");
+    public InputReader(InputStream stream) {
+        this.stream = stream;
     }
 
-    private String next() throws IOException {
-        while (!tokenizer.hasMoreTokens()) {
-            tokenizer = new StringTokenizer(reader.readLine());
+    public int nextChar() {
+        if (charCount == -1)
+            throw new InputMismatchException();
+        if (head >= charCount) {
+            head = 0;
+            try {
+                charCount = stream.read(buffer);
+            } catch (IOException e) {
+                throw new InputMismatchException();
+            }
+            if (charCount <= 0)
+                return -1;
         }
-        return tokenizer.nextToken();
+        return buffer[head ++];
     }
 
-    public Integer nextInt() throws IOException {
-        return Integer.parseInt(next());
+    public int nextInt() {
+        int c = nextChar();
+        while (isSpaceChar(c))
+            c = nextChar();
+        int sign = 1;
+        if (c == '-') {
+            sign = -1;
+            c = nextChar();
+        }
+        int result = 0;
+        do {
+            if (c < '0' || c > '9')
+                throw new InputMismatchException();
+            result *= 10;
+            result += c - '0';
+            c = nextChar();
+        } while (!isSpaceChar(c));
+        return sign * result;
     }
 
-    private BufferedReader  reader;
-    private StringTokenizer tokenizer;
+    public boolean isSpaceChar(int c) {
+        return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
+    }
+
+    private InputStream stream;
+    private int head, charCount;
+    private byte[] buffer = new byte[1024];
 }

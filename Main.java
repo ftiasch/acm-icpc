@@ -30,8 +30,9 @@ class InputReader {
     }
 
     public int nextChar() {
-        if (charCount == -1)
+        if (charCount == -1) {
             throw new InputMismatchException();
+        }
         if (head >= charCount) {
             head = 0;
             try {
@@ -39,16 +40,18 @@ class InputReader {
             } catch (IOException e) {
                 throw new InputMismatchException();
             }
-            if (charCount <= 0)
+            if (charCount <= 0) {
                 return -1;
+            }
         }
         return buffer[head ++];
     }
 
     public int nextInt() {
         int c = nextChar();
-        while (isSpaceChar(c))
+        while (isSpaceChar(c)) {
             c = nextChar();
+        }
         int sign = 1;
         if (c == '-') {
             sign = -1;

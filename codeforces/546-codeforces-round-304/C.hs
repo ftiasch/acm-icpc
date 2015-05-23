@@ -7,47 +7,42 @@ main :: IO ()
 main = putStrLn . format . solve . parse =<< getContents
 
 parse :: String -> Input
-parse content =
-    let [n, a, b] = lines content
-        readLine  = map read . tail . words
-    in  (read n, readLine a, readLine b)
+parse content = (read n, readLine a, readLine b)
+    where [n, a, b] = lines content
+          readLine  = map read . tail . words
 
-data Queue = Queue ([Int], [Int])
+data Queue a = Queue [a] [a]
 
-empty :: Queue -> Bool
-empty (Queue ([], _)) = True
-empty otherwise       = False
+empty :: Queue a -> Bool
+empty (Queue [] _) = True
+empty otherwise    = False
 
-balance :: ([Int], [Int]) -> Queue
-balance ([], c) =
-    let n      = length c
-        (a, b) = splitAt (n `div` 2) c
-    in Queue (reverse b, a)
-balance queue = Queue queue
+balance :: [a] -> [a] -> Queue a
+balance [] b = Queue (reverse b) []
+balance a  b = Queue a b
 
-push :: Queue -> Int -> Queue
-push (Queue (a, b)) k = balance (a, k : b)
+push :: Queue a -> a -> Queue a
+push (Queue a b) k = balance a (k : b)
 
-pop :: Queue -> (Int, Queue)
-pop (Queue (a : as, b)) = (a, balance (as, b))
+pop :: Queue a -> (a, Queue a)
+pop (Queue (a : as) b) = (a, balance as b)
 
-fromList :: [Int] -> Queue
-fromList a = Queue (a, [])
+fromList :: [a] -> Queue a
+fromList a = Queue a []
 
 solve :: Input -> Output
-solve (n, a, b) =
-    let bound = 1000
-        simulate step a b
-            | step > bound = Nothing
-            | empty a      = Just (step, 2)
-            | empty b      = Just (step, 1)
-            | otherwise    =
-                let (x, as) = pop a
-                    (y, bs) = pop b
-                in if x > y
-                   then simulate (step + 1) (as `push` y `push` x) bs
-                   else simulate (step + 1) as (bs `push` x `push` y)
-    in simulate 0 (fromList a) (fromList b)
+solve (n, a, b) = simulate 0 (fromList a) (fromList b)
+    where simulate step a b
+              | step > 1000 = Nothing
+              | empty a     = Just (step, 2)
+              | empty b     = Just (step, 1)
+              | otherwise   =
+                  let (x, as)   = pop a
+                      (y, bs)   = pop b
+                      simulate' = simulate (step + 1)
+                  in if x > y
+                     then simulate' (as `push` y `push` x) bs
+                     else simulate' as (bs `push` x `push` y)
 
 format :: Output -> String
 format Nothing       = "-1"

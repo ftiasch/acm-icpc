@@ -1,24 +1,42 @@
-import Debug.Trace (trace)
+alphabet :: String
+alphabet = ['a'..'z']
 
-type Input  = (String, String, String)
+singleton :: a -> [a]
+singleton x = [x]
 
-parse :: String -> Input
-parse contents = (a, b, c) where [a, b, c] = lines contents
+type Count  = [Int]
+type Result = (Int, Int, Count)
 
-count :: String -> [Int]
-count s = map count' ['a'..'z']
-          where count' c = length (filter (== c) s)
+count :: String -> Count
+count s = map count' alphabet
+          where count' c = length . filter (== c) $ s
 
-occur :: [Int] -> [Int] -> Int
-occur p t = minimum . map (uncurry div) . filter ((> 0) . snd) $ zip t p
+occur :: Count -> Count -> Int
+occur p = minimum . map (uncurry $ flip div) . filter ((> 0) . fst) . zip p
 
-solve :: Input -> String
-solve (a, b, c) = show (s, i)
-                  where [countA, countB, countC] = map count [a, b, c]
-                        combinations = do x <- [0 .. occur countA countC]
-                                          let y = occur countB (zipWith (\w u -> w - u * i) countC countA)
-                                          return (x + y, x)
-                        (s, i) = trace (show combinations) $ maximum combinations
+exclude :: Int -> Count -> Count -> Count
+exclude n = zipWith (\a c -> c - n * a)
+
+build :: String -> String -> Result -> String
+build a b (xy, x, c) = concat $ concatMap (uncurry replicate) components
+                       where y          = xy - x
+                             components = [(x, a), (y, b)] ++ zip c (map singleton alphabet)
+
+compute :: Count -> Count -> Count -> Int -> Result
+compute a b c i = (i + j, i, c'')
+                  where c'  = exclude i a c
+                        j   = occur b c'
+                        c'' = exclude j b c'
+
+solve :: String -> String -> String -> String
+solve a' b' c' = build a' b' best
+                 where [a, b, c] = map count [a', b', c']
+                       n         = occur a c
+                       best      = maximum [compute a b c i | i <- [0..n]]
 
 main :: IO ()
-main = putStrLn . solve . parse =<< getContents
+main = do
+    a <- getLine
+    b <- getLine
+    c <- getLine
+    putStrLn $ solve b c a

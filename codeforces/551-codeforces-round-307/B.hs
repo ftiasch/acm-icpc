@@ -14,9 +14,6 @@ count s = map count' alphabet
 occur :: Count -> Count -> Int
 occur p = minimum . map (uncurry $ flip div) . filter ((> 0) . fst) . zip p
 
-exclude :: Int -> Count -> Count -> Count
-exclude n = zipWith (\a c -> c - n * a)
-
 build :: String -> String -> Result -> String
 build a b (xy, x, c) = concat $ concatMap (uncurry replicate) components
                        where y          = xy - x
@@ -24,15 +21,16 @@ build a b (xy, x, c) = concat $ concatMap (uncurry replicate) components
 
 compute :: Count -> Count -> Count -> Int -> Result
 compute a b c i = (i + j, i, c'')
-                  where c'  = exclude i a c
-                        j   = occur b c'
-                        c'' = exclude j b c'
+                  where c'        = exclude i a c
+                        j         = occur b c'
+                        c''       = exclude j b c'
+                        exclude n = zipWith (\a c -> c - n * a)
 
 solve :: String -> String -> String -> String
 solve a' b' c' = build a' b' best
-                 where [a, b, c] = map count [a', b', c']
+                 where best      = maximum [compute a b c i | i <- [0..n]]
                        n         = occur a c
-                       best      = maximum [compute a b c i | i <- [0..n]]
+                       [a, b, c] = map count [a', b', c']
 
 main :: IO ()
 main = do

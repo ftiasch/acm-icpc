@@ -1,0 +1,53 @@
+\documentclass[12pt, a4paper]{extarticle}
+
+\usepackage{extsizes}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cmap}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{xeCJK}
+\usepackage{enumerate}
+\usepackage{mdwlist}
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\makeatletter
+\def\old@comma{,}
+\catcode`\,=13
+\def,{%
+    \ifmmode%
+    \old@comma\discretionary{}{}{}%
+    \else%
+    \old@comma%
+    \fi%
+}
+\makeatother
+
+\geometry{margin=1in}
+
+\renewcommand{\thesection}{Problem \Alph{section}}
+\renewcommand{\thesubsection}{}
+
+\setCJKmainfont[BoldFont={Adobe Heiti Std}]
+{Adobe Song Std}
+\setCJKmonofont{Adobe Fangsong Std}
+
+$if(title)$
+\title{$title$}
+$endif$
+\author{$for(author)$$author$$sep$\\$endfor$}
+$if(date)$
+\date{$date$}
+$endif$
+
+\begin{document}
+
+$if(title)$
+\maketitle
+$endif$
+
+$body$
+
+\end{document}

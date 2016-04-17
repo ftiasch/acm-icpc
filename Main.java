@@ -1,78 +1,43 @@
 import java.io.*;
-import java.math.*;
 import java.util.*;
 
-public class Main {
-    public void run() {
-        writer.close();
-    }
-
-    Main() {
-        reader = new InputReader(System.in);
-        writer = new PrintWriter(System.out);
-    }
-
+public class Solution {
     public static void main(String[] args) {
-        new Main().run();
+        new Solution().run();
     }
 
-    private static void debug(Object...os) {
-        System.err.println(Arrays.deepToString(os));
-    }
-
-    private InputReader reader;
-    private PrintWriter writer;
-}
-
-class InputReader {
-    public InputReader(InputStream stream) {
-        this.stream = stream;
-    }
-
-    public int nextChar() {
-        if (charCount == -1) {
-            throw new InputMismatchException();
+    public void run() {
+        InputReader reader = new InputReader(System.in);
+        PrintWriter writer = new PrintWriter(System.out);
+        try {
+        } catch (IOException e) {
+        } finally {
+            writer.close();
         }
-        if (head >= charCount) {
-            head = 0;
-            try {
-                charCount = stream.read(buffer);
-            } catch (IOException e) {
-                throw new InputMismatchException();
+    }
+
+    class InputReader {
+        InputReader(InputStream in) {
+            this.reader    = new BufferedReader(new InputStreamReader(in));
+            this.tokenizer = new StringTokenizer("");
+        }
+
+        public String nextToken() throws IOException {
+            while (!tokenizer.hasMoreTokens()) {
+                tokenizer = new StringTokenizer(reader.readLine());
             }
-            if (charCount <= 0) {
-                return -1;
-            }
+            return tokenizer.nextToken();
         }
-        return buffer[head ++];
+
+        public int nextInt() throws IOException {
+            return Integer.parseInt(nextToken());
+        }
+
+        private BufferedReader  reader;
+        private StringTokenizer tokenizer;
     }
 
-    public int nextInt() {
-        int c = nextChar();
-        while (isSpaceChar(c)) {
-            c = nextChar();
-        }
-        int sign = 1;
-        if (c == '-') {
-            sign = -1;
-            c = nextChar();
-        }
-        int result = 0;
-        do {
-            if (c < '0' || c > '9')
-                throw new InputMismatchException();
-            result *= 10;
-            result += c - '0';
-            c = nextChar();
-        } while (!isSpaceChar(c));
-        return sign * result;
+    private void debug(Object...o) {
+        System.err.println(Arrays.deepToString(o));
     }
-
-    public boolean isSpaceChar(int c) {
-        return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
-    }
-
-    private InputStream stream;
-    private int head, charCount;
-    private byte[] buffer = new byte[1024];
 }
